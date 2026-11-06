@@ -1,0 +1,1476 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>STP Parts</title>
+<link rel="icon" href="img/logo.jpg">
+<style>
+
+:root{--bg:#eef1f5;--card:#fff;--ink:#1c2733;--mute:#66758a;--line:#d9dfe7;--pri:#1f5fbf;--gr:#1d7a4b;--grb:#dff3e7;--am:#9a5b00;--amb:#fdf0d2;--rd:#b42318;--rdb:#fde8e6}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,"Segoe UI",Roboto,sans-serif}
+header.top{display:flex;align-items:center;gap:16px;margin:12px 24px 4px;padding:10px 18px;background:#fff;border:1px solid var(--line);border-radius:6px}
+.top .logo{height:46px;width:auto}
+.top .co{font-weight:700;letter-spacing:.04em;color:var(--pri);font-size:13px}
+h1{margin:0;font-size:22px;line-height:1.2}
+.kop,.rtitle{display:none}
+.credit{text-align:center;color:var(--mute);font-size:10.5px;line-height:1.45;padding:14px 12px 26px;border-top:1px solid var(--line);margin:8px 24px 0}
+main{padding:10px 24px 28px}
+.top{flex-wrap:wrap}.top .brand{min-width:230px}
+.stats{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 0 auto}
+.stat{background:var(--card);border:1px solid var(--line);border-left:4px solid var(--pri);border-radius:6px;padding:5px 14px 5px 12px;min-width:132px;cursor:pointer}
+.stat b{display:block;font-size:21px;line-height:1.15}.stat span{color:var(--mute);font-size:12px;white-space:nowrap}
+.stat:hover{background:#f4f8ff}.stat.on{background:#eaf2ff;box-shadow:0 0 0 1px var(--pri)}
+.stat.w{border-left-color:var(--am)}.stat.c{border-left-color:var(--rd)}.stat.g{border-left-color:var(--gr)}
+.bar{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 18px;margin-bottom:8px}
+.bar-l{display:flex;gap:8px;flex:1 1 360px;min-width:260px}.bar-l input[type=search]{flex:1;min-width:150px}
+.bar-r{display:flex;flex-wrap:wrap;gap:8px 0}
+.grp{display:flex;gap:6px;padding:0 14px;border-left:1px solid var(--line)}.grp:first-child{padding-left:0;border-left:0}.grp:last-child{padding-right:0}
+input,select,textarea,button{font:inherit}
+input,select,textarea{padding:7px 9px;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--ink);width:100%}
+.bar input,.bar select{width:auto}
+button{padding:7px 12px;border:1px solid var(--line);border-radius:5px;background:#fff;cursor:pointer}
+button:hover{background:#f3f6fa}
+button.p{background:var(--pri);border-color:var(--pri);color:#fff}button.p:hover{background:#184c99}
+button.d{color:var(--rd)}
+:focus-visible{outline:2px solid var(--pri);outline-offset:1px}
+.wrap{background:var(--card);border:1px solid var(--line);border-radius:6px;overflow:auto;--rw:200px}
+table{width:100%;border-collapse:collapse}.wrap table{min-width:1400px}.rows{min-width:1400px}
+th,td{padding:8px 10px;text-align:left;vertical-align:top;border-bottom:1px solid var(--line)}
+th{background:#f6f8fb;font-weight:600;white-space:nowrap}
+.wrap th{position:sticky;top:0;z-index:3;box-shadow:inset 0 -1px 0 var(--line)}
+.wrap td{overflow-wrap:anywhere}.wrap td:nth-child(3),.wrap td:nth-child(5){overflow-wrap:normal}.wrap tbody tr:hover{background:#f6f9fe}
+.wrap th:nth-child(1){width:70px}.wrap th:nth-child(2){min-width:175px}.wrap th:nth-child(3){min-width:200px}.wrap th:nth-child(5){min-width:195px}
+.wrap th:nth-child(6){min-width:145px}.wrap th:nth-child(7){min-width:128px}.wrap th:nth-child(8){min-width:200px}.wrap th:nth-child(9){width:146px}
+/* kolom Aksi menempel di kanan agar tombol selalu terlihat saat tabel digeser */
+.wrap th:last-child,.wrap td:last-child{position:sticky;right:0;background:#fff;box-shadow:-6px 0 8px -6px rgba(20,30,45,.18)}
+.wrap th:last-child{background:#f6f8fb;z-index:4}.wrap tr.crit td:last-child{background:#fff7f6}.wrap tbody tr:hover td:last-child{background:#f6f9fe}
+@media screen and (max-width:1500px){.wrap table{font-size:13px;min-width:1300px}.wrap th,.wrap td{padding:7px 8px}}
+tr.crit{background:#fff7f6}
+td small{display:block;color:var(--mute)}
+.bd{display:inline-block;padding:2px 9px;border-radius:99px;font-weight:600;font-size:12px;white-space:nowrap}
+.fu-ok{background:var(--grb);color:var(--gr)}.fu-warn{background:var(--amb);color:var(--am)}.fu-bad{background:var(--rdb);color:var(--rd)}.fu-no{background:#e8ecf2;color:var(--mute)}
+.acts{display:grid;grid-template-columns:1fr 1fr;gap:4px;width:132px}.acts button{padding:4px 6px;font-size:13px;white-space:nowrap;text-align:center}
+td select{padding:3px 5px;width:auto}
+.whs{display:flex;flex-wrap:wrap;gap:3px;margin-top:5px;max-width:170px}.wh{font-size:11px;padding:1px 6px;border-radius:4px;background:#eef1f5;color:var(--mute);white-space:nowrap}.wh.on{background:var(--grb);color:var(--gr)}
+.hint{background:#f5f9ff;border:1px solid #cfe0f7;border-radius:6px;padding:8px 10px}.hint:empty{display:none}.hint small{display:block;color:var(--mute)}.hint .whs{max-width:none}
+.pl{max-height:250px;overflow:auto;border:1px solid var(--line);border-radius:6px}
+.pl label.ck{display:flex;gap:8px;align-items:flex-start;padding:6px 10px;border-bottom:1px solid var(--line);font-weight:400;cursor:pointer}
+.pl label.ck:hover{background:#f6f8fb}.ck input{width:auto;margin:3px 0 0}.ck small{color:var(--mute)}
+.pl-head{display:flex;justify-content:space-between;align-items:center;margin:14px 0 6px}
+.pl-head label{display:flex;gap:6px;align-items:center}.pl-head input{width:auto;margin:0}
+#printArea{display:none}.pf{font-size:11px;margin:0 0 8px;color:#222}
+.rr{display:flex;gap:6px;margin-top:6px}.rr select{flex:1;width:auto}.rr input{width:90px}.rr button{padding:4px 10px}
+.rr-foot{display:flex;justify-content:space-between;align-items:center;margin-top:8px}.rq{white-space:nowrap}.rq .bd{margin-left:4px}
+.rcell{min-width:calc(var(--rw) + 42px)}.rcell .rr{margin:0 0 4px;align-items:center}
+.rcell .rr select{width:var(--rw);flex:none;padding:3px 5px;font-size:13px}.rcell .rr button{padding:2px 7px}
+.addq{padding:2px 8px;font-size:12px;color:var(--pri)}
+.fu-part{background:#e3edfc;color:#1f5fbf}.stat.d{border-left-color:#0e7490}
+[hidden]{display:none!important}
+.nx{margin-top:3px}.nx .bd{margin-left:4px}
+.qd{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:6px;font-size:12px;color:var(--mute)}.qd button{padding:2px 8px;font-size:12px}
+thead [data-sort]{cursor:pointer;user-select:none}thead [data-sort]:hover{color:var(--pri)}
+thead [data-sort].asc::after{content:' ▲';font-size:10px}thead [data-sort].desc::after{content:' ▼';font-size:10px}
+thead .sub{font-weight:400;color:var(--mute)}
+.ck2{display:flex;align-items:center;gap:8px;font-weight:600}.ck2 input{width:auto;margin:0}
+.ug{display:flex;align-items:center;gap:4px;margin-top:6px;font-size:11px;font-weight:400;color:var(--mute);cursor:pointer;white-space:nowrap}
+.ug input{width:auto;margin:0}.ug.on{color:var(--rd);font-weight:700}
+.wrap tr.urg td:first-child{box-shadow:inset 3px 0 0 var(--rd)}
+.rows input[type=checkbox]{width:auto}
+.empty{padding:34px;text-align:center;color:var(--mute)}
+dialog{border:0;border-radius:8px;padding:0;width:min(760px,94vw);max-height:92vh;box-shadow:0 10px 40px rgba(0,0,0,.3)}
+dialog.wide{width:min(1040px,96vw)}
+.rows-wrap{overflow-x:auto}.rows th{white-space:nowrap}.rows th small{font-weight:400;color:var(--mute)}
+.rows [data-k=desc]{min-width:230px}.rows [data-k=part]{min-width:125px}.rows [data-k=msr],.rows [data-k=vendor],.rows [data-k=po]{min-width:115px}
+dialog::backdrop{background:rgba(20,30,45,.5)}
+.dh{display:flex;justify-content:space-between;align-items:center;padding:12px 18px;border-bottom:1px solid var(--line);position:sticky;top:0;background:#fff}
+.dh h2{margin:0;font-size:17px}
+.db{padding:16px 18px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-weight:600;font-size:13px}
+label>*{margin-top:3px;font-weight:400}
+.full{grid-column:1/-1}
+.ft{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}
+.drop{border:2px dashed var(--pri);border-radius:6px;padding:20px;text-align:center;color:var(--mute);background:#f5f9ff;margin:12px 0 6px;cursor:pointer}
+.drop:focus{background:#e6f0ff}
+.rows td{padding:4px}.rows input{padding:5px 7px}
+.hist{list-style:none;margin:0;padding:0}
+.hist li{padding:8px 0;border-bottom:1px solid var(--line)}
+.hist .la{display:flex;gap:6px;margin-top:6px}.hist .la button{padding:2px 8px}
+.hist details{margin-top:6px}.hist summary{cursor:pointer;color:var(--am);font-size:12px}
+.edl{margin:6px 0 0;padding:6px 10px;background:#fffaf0;border-left:3px solid #e0b252;font-size:12px;line-height:1.5}.edl s{color:var(--mute)}
+.msg{color:var(--mute);min-height:20px}
+@media(max-width:600px){.g2{grid-template-columns:1fr}header.top{margin:8px 12px 0}main{padding-left:12px;padding-right:12px}.top .logo{height:34px}}
+@media print{@page{size:A4 landscape;margin:12mm}
+body{background:#fff;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+header.top{display:none}
+.credit{position:fixed;left:0;right:0;bottom:0;margin:0;padding:3px 0 0;background:#fff;border-top:1px solid #999;font-size:8.5px;line-height:1.35;color:#666}
+.wrap,.stats,#dbinfo{display:none}
+#printArea{display:block}
+.pt{min-width:0;font-size:10.5px}.pt th,.pt td{padding:4px 6px}.pt tr{break-inside:avoid}.pt thead{display:table-header-group}.pt tfoot{display:table-footer-group}.pt tfoot td{border:0;height:13mm;padding:0}
+.kop{display:flex;align-items:center;gap:16px;padding-bottom:6px;margin-bottom:8px;border-bottom:4px double #000;color:#000}
+.kop .k-logo{height:46px;width:auto}.kop .k-mid{flex:1}
+.k-name{font-size:21px;font-weight:600;line-height:1.2}.k-addr{font-size:10.5px;line-height:1.35}
+.k-cert{display:flex;align-items:center;gap:8px}.k-cert img{height:46px;width:auto}
+.rtitle{display:block;margin:4px 0 10px;font-size:16px}.rtitle small{font-weight:400;color:#444;margin-left:10px}
+.stats{margin-bottom:10px;gap:8px}.stat{padding:4px 12px}.stat b{font-size:18px}main{padding:0}
+.wrap td select{appearance:none;-webkit-appearance:none;border:0;background:none;padding:0}
+.bar,.acts,.noprint{display:none}.wrap{border:0;overflow:visible}table{min-width:0;font-size:11px}.stat{break-inside:avoid}}
+
+/* ===== Tambahan STP Parts (login, navigasi, tab Stok/Unggah/Pengguna/Cadangan) ===== */
+header.top .user,.navbar .user{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:6px 0}
+.navbar .user .nm{font-weight:600}
+.badge{padding:3px 10px;border-radius:99px;font-size:12px;font-weight:600;white-space:nowrap}
+.b-rw{background:var(--grb);color:var(--gr)}.b-ro{background:var(--amb);color:var(--am)}.b-ad{background:#dfe8ff;color:#1f3f99}
+.meta{color:var(--mute);font-size:12px}
+.navbar{background:#fff;border:1px solid var(--line);border-radius:6px;margin:8px 24px 0;padding:0 10px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+nav#nav{display:flex;gap:2px;flex-wrap:wrap}
+nav#nav a{padding:10px 14px;cursor:pointer;font-weight:600;color:var(--mute);border-bottom:3px solid transparent}
+nav#nav a.on{color:var(--pri);border-color:var(--pri)}
+.login{max-width:360px;margin:12vh auto;background:#fff;border:1px solid var(--line);border-radius:10px;padding:26px}
+.login img{height:46px;display:block;margin:0 auto 10px}.login h2{margin:0 0 4px;text-align:center}.err{color:var(--rd);margin-top:10px;min-height:18px}
+.cards{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:14px}
+.card{background:#fff;border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:12px}.cards .card{margin-bottom:0}
+.kpi b{display:block;font-size:24px;margin-top:4px}.kpi span{color:var(--mute);font-size:12px;display:block}
+.tw{overflow-x:auto;background:#fff;border:1px solid var(--line);border-radius:6px}
+td.n,th.n{text-align:right;font-variant-numeric:tabular-nums}
+.pill{padding:2px 8px;border-radius:99px;font-size:12px;background:#e8ecf2;white-space:nowrap}
+.d-ok{color:var(--gr);font-weight:600}.d-warn{color:var(--am);font-weight:600}.d-bad{color:var(--rd);font-weight:700}
+.ok{color:var(--gr)}.wr{color:var(--am)}.txbad{color:var(--rd)}
+.stack{display:flex;height:22px;border-radius:6px;overflow:hidden;background:#eef1f7;margin:6px 0 4px}.stack i{display:block;height:100%}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:12px;color:var(--mute)}.legend b{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:4px;vertical-align:middle}
+.chips{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}.chip{background:#fff;border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:12px}.chip b{font-size:14px;margin-right:4px}
+.prog{height:10px;background:#e8ecf2;border-radius:6px;overflow:hidden;margin-top:10px}.prog i{display:block;height:100%;background:var(--pri);width:0}
+.tabbar{display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;align-items:center}.tabbar input{max-width:260px}.tabbar select{max-width:250px;width:auto}.sp{flex:1}
+.drop2{border:2px dashed #aab7d4;border-radius:8px;padding:26px;text-align:center;color:var(--mute);background:#fafbfe}
+@media(max-width:800px){.cards{grid-template-columns:1fr 1fr}.navbar{margin:8px 12px 0}}
+@media print{nav#nav,.navbar,#mn,.noprint,.login{display:none!important}}
+/* ===== Sorting tabel stok, dashboard, cetak dashboard ===== */
+th.sortable{cursor:pointer;user-select:none;white-space:nowrap}th.sortable:hover{color:var(--pri)}
+th.sortable.asc::after{content:' ▲';font-size:10px}th.sortable.desc::after{content:' ▼';font-size:10px}
+table.st td{vertical-align:top}
+.dgrid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}.dgrid .card{margin-bottom:0}
+.chbox{position:relative;height:250px;margin:8px 0}
+.dtitle{margin:2px 0 12px}
+table.mini{min-width:0;font-size:12.5px}table.mini th,table.mini td{padding:5px 8px}
+.dot{display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px}
+td.hot{background:#fdeceb}
+ul.ins{margin:6px 0 0;padding-left:18px}ul.ins li{margin:3px 0}
+@media(max-width:900px){.dgrid{grid-template-columns:1fr}}
+@media print{
+  body.pd #mn{display:block!important}
+  body.pd #trk,body.pd .rtitle,body.pd footer.credit,body.pd .tabbar,body.pd .noprint{display:none!important}
+  body.pd .dgrid{grid-template-columns:1fr 1fr}
+  body.pd .card{break-inside:avoid;border-color:#bbb}
+  body.pd .chbox{height:220px}
+  body.pd .cards{grid-template-columns:repeat(4,1fr)}
+}
+.hide{display:none!important}
+nav#nav a{padding:10px 10px}
+
+/* tabel Stok & Aging: header beku (sticky) + kolom rata tengah */
+.tw-scroll{max-height:calc(100vh - 70px);overflow:auto}
+.tw-scroll thead th{position:sticky;top:0;z-index:3;background:#f6f8fb;box-shadow:0 1px 0 var(--line)}
+th.ctr,td.ctr{text-align:center}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="config.js"></script>
+<script src="lib/supabase.js"></script>
+<script src="lib/xlsx.full.min.js"></script>
+<script src="lib/chart.umd.min.js"></script>
+<!-- OCR (Batch MSR dari screenshot): butuh internet saat dipakai. Fitur lain jalan tanpa OCR. -->
+<script async src="https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/tesseract.min.js"></script>
+<script>
+const SHELL = `
+<header class="top">
+  <img class="logo" src="img/logo.jpg" alt="Logo STP">
+  <div class="brand"><div class="co">PT SEJAHTERA TRIDAYA PRIMA</div><h1>STP Parts</h1></div>
+  <section class="stats" id="stats"></section>
+</header>
+<div class="navbar"><nav id="nav"></nav><div class="user" id="who"></div></div>
+<!-- Kop surat: hanya tampil saat Export PDF / Print -->
+<div class="kop" style="padding:0 0 6px;margin:0 0 8px">
+  <img class="k-logo" src="img/logo.jpg" alt="Logo STP">
+  <div class="k-mid">
+    <div class="k-name">PT SEJAHTERA TRIDAYA PRIMA</div>
+    <div class="k-addr">Plaza Aminta Lantai 2, Suite 202 Jl. Let. Jend. TB. Simatupang Kav. 10<br>Kel. Pondok Pinang, Kec. Kebayoran Lama, Jakarta Selatan 12310<br>Email: info@sejahtera-eng.com | Website: www.stp-pumps.com<br>Telp: 021–7511422, Fax: 021–7511421</div>
+  </div>
+  <div class="k-cert"><img src="img/smk3.png" alt="SMK3"><img src="img/tuvsud.jpg" alt="TUV SUD"><img src="img/iso14001.png" alt="Accredited ISO 14001"></div>
+</div>
+<h2 class="rtitle">STP Parts · Spareparts Follow-up Tracker <small id="pdate"></small></h2>
+<main id="trk">
+  <div class="bar noprint">
+    <div class="bar-l">
+      <input type="search" id="q" placeholder="Cari Part No, MSR, Vendor, atau Requester…">
+      <select id="flt"><option value="all">Semua Status</option></select>
+    </div>
+    <div class="bar-r" id="topbtns"></div>
+  </div>
+  <p id="dbinfo" class="msg noprint" style="margin:0 0 8px;font-size:12px;min-height:0"></p>
+  <div class="wrap"><table>
+    <thead><tr><th data-sort="fu" title="Klik untuk mengurutkan">FU</th><th data-sort="part" title="Klik untuk mengurutkan">Detail Part</th><th data-sort="msr" title="Klik untuk mengurutkan">MSR / Vendor</th><th data-sort="req" title="Klik untuk mengurutkan">Requester</th><th data-sort="qty" title="Klik untuk mengurutkan">Qty / PO</th><th data-sort="stok" title="Klik untuk mengurutkan">Stok Gudang</th><th data-sort="status" title="Klik untuk mengurutkan">Status</th><th><span data-sort="last" title="Urutkan menurut tanggal FU terakhir (klik 1× = terlama di atas)">Follow-up Terakhir</span><span data-sort="next" class="sub" title="Urutkan menurut tanggal FU berikutnya"> · Berikutnya</span></th><th class="noprint">Aksi</th></tr></thead>
+    <tbody id="tb"></tbody>
+  </table></div>
+  <div id="printArea"></div>
+</main>
+<main id="mn" hidden></main>
+<footer class="credit">STP Parts · PT Sejahtera Tridaya Prima · <b>Versi 2.3</b><br>Dikembangkan oleh Fadholi Ambar | Parts Analyst</footer>
+<dialog id="dlg">
+  <div class="dh"><h2 id="dT"></h2><button onclick="dlg.close()" aria-label="Tutup">✕</button></div>
+  <div class="db" id="dB"></div>
+</dialog>
+<input type="file" id="csvFile" accept=".xlsx,.xls,.csv,.txt" hidden>
+`;
+
+const CFG = window.STP_CONFIG;
+function cfgProblem(){
+  if (!CFG || typeof CFG !== 'object') return 'File <b>config.js</b> tidak terbaca atau ada salah ketik (tanda kutip atau koma hilang), sehingga isinya tidak berjalan. Buka <a href="config.js" target="_blank">config.js</a> untuk memeriksa: isinya harus 4 baris yang diawali <code>window.STP_CONFIG = {</code> dan diakhiri <code>};</code>. Jika yang tampil malah halaman aplikasi, berarti file config.js tidak ada di folder <b>public</b>.';
+  const url = String(CFG.url || '').trim(), key = String(CFG.key || '').trim();
+  if (!url || url.startsWith('GANTI')) return '<b>Project URL</b> di config.js belum diisi (masih tulisan GANTI_...).';
+  if (!key || key.startsWith('GANTI')) return '<b>Publishable key</b> di config.js belum diisi (masih tulisan GANTI_...).';
+  if (!(/^https:\/\/[^\s\/]+\.[^\s\/]+\/?$/i.test(url) || /^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\/?$/i.test(url))) return '<b>Project URL</b> tampak salah. Harus berbentuk <code>https://xxxxxxxxxx.supabase.co</code>, tanpa spasi, tanpa tambahan di belakang. Yang terbaca: <code>' + url.slice(0, 60).replace(/[<>&"]/g, '') + '</code>';
+  if (/^sb_secret_/.test(key)) return 'Key yang diisi adalah <b>secret key</b>. Jangan dipakai di aplikasi. Ganti dengan <b>Publishable key</b> (diawali sb_publishable_).';
+  if (key.startsWith('eyJ')) { try { const r = JSON.parse(atob(key.split('.')[1].replace(/-/g,'+').replace(/_/g,'/'))).role; if (r === 'service_role') return 'Key yang diisi adalah <b>service_role (secret)</b>. Jangan dipakai di aplikasi. Ganti dengan Publishable key atau anon key.'; } catch(e){} }
+  else if (!/^sb_publishable_/.test(key)) return '<b>Key</b> tampak salah. Pakai Publishable key (diawali <code>sb_publishable_</code>) atau anon key (diawali <code>eyJ</code>).';
+  return '';
+}
+const CFG_ERR = cfgProblem();
+if (CFG_ERR) {
+  document.getElementById('app').innerHTML = '<div class="login" style="max-width:560px"><img src="img/logo.jpg" alt="Logo STP"><h2>STP Parts</h2><div class="meta" style="text-align:center">Versi 2.3</div><p style="margin-top:14px"><b>Aplikasi belum dikonfigurasi.</b></p><p>' + CFG_ERR + '</p><p class="meta">Cara memperbaiki: GitHub &rarr; folder <b>public</b> &rarr; <b>config.js</b> &rarr; ikon pensil &rarr; isi <code>url</code> dan <code>key</code> dari Supabase (Project Settings &rarr; API Keys / Data API) &rarr; Commit changes &rarr; tunggu 1&ndash;2 menit &rarr; Ctrl+F5.</p></div>';
+  throw new Error('config.js bermasalah: ' + CFG_ERR.replace(/<[^>]+>/g, ''));
+}
+CFG.url = String(CFG.url).trim(); CFG.key = String(CFG.key).trim();
+const sb = supabase.createClient(CFG.url, CFG.key);
+const $$ = s => document.querySelector(s);
+const escH = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const TZ = 'Asia/Jakarta';
+const fmtDT = d => d ? new Date(d).toLocaleString('id-ID',{timeZone:TZ,day:'2-digit',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}) : '-';
+const fmtD = d => d ? new Date(String(d).slice(0,10)).toLocaleDateString('id-ID',{timeZone:'UTC',day:'2-digit',month:'short',year:'numeric'}) : '-';
+const num = n => Number(n||0).toLocaleString('id-ID',{maximumFractionDigits:0});
+const rp = n => 'Rp ' + num(n);
+const rpS = n => { n = Number(n||0); const a = Math.abs(n);
+  return a >= 1e9 ? 'Rp ' + (n/1e9).toLocaleString('id-ID',{maximumFractionDigits:2}) + ' M' : a >= 1e6 ? 'Rp ' + (n/1e6).toLocaleString('id-ID',{maximumFractionDigits:1}) + ' jt' : rp(n); };
+const dayKey = d => d.toLocaleDateString('sv-SE',{timeZone:TZ});
+const ALL_G = ['B','E','F','L','O','C'];
+const GNOTE = { C:'dikelola produksi' };
+let me = null, isAdmin = false, canWrite = false, myG = [], names = {}, tab = 'tracker';
+let trk = null;   // modul tracker
+
+async function fetchAll(make){   // PostgREST membatasi 1000 baris per permintaan
+  const out = []; let from = 0;
+  for (;;){ const { data, error } = await make().range(from, from + 999); if (error) throw error; out.push(...data); if (data.length < 1000) break; from += 1000; }
+  return out;
+}
+const csvText = (head, lines) => { const q = v => '"' + String(v ?? '').replace(/"/g,'""') + '"'; return '\uFEFF' + [head.map(q).join(','), ...lines.map(l => l.map(q).join(','))].join('\r\n'); };
+const csvDownload = (name, head, lines) => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob([csvText(head, lines)], {type:'text/csv;charset=utf-8'})); a.download = name; a.click(); };
+
+/* ===================== MASUK / KELUAR ===================== */
+async function init(){
+  const { data:{ session } } = await sb.auth.getSession();
+  session ? enter(session.user) : showLogin();
+}
+function showLogin(msg){
+  $$('#app').innerHTML = `<div class="login"><img src="img/logo.jpg" alt="Logo STP"><h2>STP Parts</h2><div class="meta" style="text-align:center">Masuk dengan akun yang diberikan admin</div><div class="meta" style="text-align:center;margin-top:2px">Versi 2.3</div>
+  <label style="margin-top:12px">Email<input id="em" type="email" autocomplete="username"></label>
+  <label style="margin-top:8px">Password<input id="pw" type="password" autocomplete="current-password"></label>
+  <div style="margin-top:14px"><button class="p" id="go" style="width:100%">Masuk</button></div><div class="err" id="er">${escH(msg||'')}</div></div>`;
+  const go = async () => { $$('#er').textContent = '';
+    const { data, error } = await sb.auth.signInWithPassword({ email:$$('#em').value.trim(), password:$$('#pw').value });
+    if (error) $$('#er').textContent = /invalid login/i.test(error.message) ? 'Email atau password salah (atau akun belum ada di Supabase).' : /not confirmed/i.test(error.message) ? 'Akun belum dikonfirmasi. Konfirmasi akun di Supabase (Authentication > Users).' : /rate limit|too many/i.test(error.message) ? 'Terlalu banyak percobaan. Tunggu beberapa menit lalu coba lagi.' : 'Gagal masuk: ' + error.message; else enter(data.user); };
+  $$('#go').onclick = go; $$('#pw').onkeydown = e => { if (e.key === 'Enter') go(); };
+}
+async function enter(user){
+  const { data:prof, error } = await sb.from('profiles').select('*').eq('id', user.id).single();
+  if (error || !prof){ await sb.auth.signOut(); return showLogin('Profil akun tidak ditemukan. Hubungi admin.'); }
+  me = { id:user.id, email:user.email, name:prof.full_name || user.email, role:prof.role, gudang:prof.gudang || [] };
+  isAdmin = me.role === 'admin'; canWrite = isAdmin || me.role === 'editor'; myG = isAdmin ? ALL_G.slice() : me.gudang.filter(g => ALL_G.includes(g));
+  try { (await sb.from('profiles').select('id,full_name,email')).data.forEach(u => names[u.id] = u.full_name || u.email); } catch(e){}
+  $$('#app').innerHTML = SHELL;
+  $$('#who').innerHTML = `<span class="nm">${escH(me.name)}</span><span class="badge ${isAdmin?'b-ad':canWrite?'b-rw':'b-ro'}">${isAdmin?'Admin':canWrite?'Baca &amp; Tulis':'Hanya Baca'}</span><span class="meta">Gudang: ${escH(myG.join(', ')||'-')}</span><button id="lo">Keluar</button>`;
+  $$('#lo').onclick = async () => { await sb.auth.signOut(); location.reload(); };
+  trk = createTracker();
+  go(tab);
+}
+async function go(t){
+  tab = t;
+  const tabs = [['tracker','Follow-up Tracker'],['stok','Stok &amp; Aging'],['dash','Dashboard'],...(canWrite?[['unggah','Unggah Aging'],['penjualan','Unggah Penjualan']]:[]),...(isAdmin?[['users','Pengguna'],['backup','Cadangan Data']]:[])];
+  $$('#nav').innerHTML = tabs.map(x => `<a class="${x[0]===t?'on':''}" data-t="${x[0]}">${x[1]}</a>`).join('');
+  document.querySelectorAll('#nav a').forEach(a => a.onclick = () => go(a.dataset.t));
+  const isT = t === 'tracker';
+  $$('#trk').hidden = !isT; $$('#mn').hidden = isT; $$('#stats').style.display = isT ? '' : 'none';
+  if (isT) return trk.show();
+  ({stok:viewStok, dash:viewDashboard, unggah:viewUnggah, penjualan:viewSales, users:viewUsers, backup:viewBackup})[t]();
+}
+
+/* =====================================================================
+   MODUL FOLLOW-UP TRACKER (dipindahkan dari sparepart-tracker.html ke database Supabase)
+   ===================================================================== */
+function createTracker() {
+  const CRIT = 3, NEXT_DAYS = 7, NEXT_DAYS_URGENT = 3, STALE_DAYS = 7;
+  const PART = 'Sebagian Diterima';
+  const STATUS = ['Belum Diterima', PART, 'Sudah Diterima'];
+  const $ = s => document.querySelector(s);
+  const dlg = $('#dlg');
+  const esc = escH;
+  let reqs = [], items = [], stockMeta = null, wired = false;
+  const stockCache = new Map();
+
+  /* ----- helper tanggal & status (dari file asli) ----- */
+  const pad = n => String(n).padStart(2, '0');
+  const ymd = d => `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}`;
+  const today = () => ymd(new Date());
+  const parseD = s => { const [y, m, d] = String(s).slice(0, 10).split('-').map(Number); return new Date(y, m - 1, d); };
+  const dayDiff = s => Math.round((parseD(today()) - parseD(s)) / 864e5);
+  const addDays = (s, n) => { const d = parseD(s || today()); d.setDate(d.getDate() + n); return ymd(d); };
+  const fmt = d => d ? new Date(d).toLocaleDateString('id-ID', {day:'2-digit', month:'short', year:'numeric'}) : '-';
+  const fmtTs = d => new Date(d).toLocaleString('id-ID', { day: '2-digit', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+  const uid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+  const last = i => i.logs[i.logs.length - 1] || {};
+  const done = i => i.status === 'Sudah Diterima';
+  const isCrit = i => !done(i) && i.logs.length >= CRIT;
+  const ageDays = i => last(i).date ? Math.max(0, dayDiff(last(i).date)) : 0;
+  const isStale = i => !done(i) && ageDays(i) >= STALE_DAYS;
+  const isDue = i => !done(i) && !!i.next && dayDiff(i.next) >= 0;
+  const rcvOf = i => done(i) ? i.qty : i.status === PART ? (i.rcv || 0) : 0;
+  const statusText = i => i.status === PART ? `Sebagian (${i.rcv || 0}/${i.qty})` : i.status;
+  const statusBadge = i => done(i) ? '<span class="bd fu-ok">Sudah Diterima</span>'
+    : i.status === PART ? `<span class="bd fu-part">Sebagian ${esc(i.rcv || 0)}/${esc(i.qty)}</span>` : '<span class="bd fu-warn">Belum Diterima</span>';
+  const ageTxt = n => n === 0 ? 'hari ini' : n === 1 ? 'kemarin' : n + ' hari lalu';
+  const ageBadge = i => { if (done(i)) return ''; const n = ageDays(i);
+    return `<span class="bd ${n >= STALE_DAYS * 2 ? 'fu-bad' : n >= STALE_DAYS ? 'fu-warn' : 'fu-no'}">${ageTxt(n)}</span>`; };
+  const nextBadge = i => { if (done(i) || !i.next) return ''; const n = -dayDiff(i.next);
+    return `<small class="nx">FU berikutnya: ${fmt(i.next)} <span class="bd ${n < 0 ? 'fu-bad' : n === 0 ? 'fu-warn' : 'fu-ok'}">${n < 0 ? 'Terlambat ' + (-n) + ' hari' : n === 0 ? 'Hari ini' : n === 1 ? 'Besok' : n + ' hari lagi'}</span></small>`; };
+  const FILTERS = [['all', 'Semua Status'], ['belum', 'Belum Diterima (termasuk sebagian)'], ['sebagian', 'Sebagian Diterima'], ['sudah', 'Sudah Diterima'],
+    ['crit', `Perlu Perhatian (FU ≥ ${CRIT}x)`], ['due', 'Jatuh tempo FU (hari ini / terlewat)'], ['stale', `Lama tidak di-FU (≥ ${STALE_DAYS} hari)`], ['urgent', 'Urgent']];
+  const filterOpts = sel => FILTERS.map(([v, t]) => `<option value="${v}" ${v === sel ? 'selected' : ''}>${esc(t)}</option>`).join('');
+  const matchStatus = (i, k) => !k || k === 'all' || (k === 'belum' && !done(i)) || (k === 'sebagian' && i.status === PART) || (k === 'sudah' && done(i)) ||
+    (k === 'crit' && isCrit(i)) || (k === 'due' && isDue(i)) || (k === 'stale' && isStale(i)) || (k === 'urgent' && i.urgent);
+  let sort = { k: '', dir: 1 };
+  const SORTERS = { fu: i => i.logs.length, part: i => i.part, msr: i => i.msr, req: i => i.req, qty: i => +i.qty || 0,
+    stok: i => stockOf(i).total ?? -1, status: i => done(i) ? 2 : i.status === PART ? 1 : 0, last: i => last(i).date || '', next: i => i.next || '' };
+  const cmp = (a, b) => typeof a === 'number' && typeof b === 'number' ? a - b : String(a).localeCompare(String(b), 'id', { numeric: true, sensitivity: 'base' });
+  const NEXT_HINT = `Default H+${NEXT_DAYS} dari tanggal FU; item urgent H+${NEXT_DAYS_URGENT} (otomatis, tetap bisa diubah).`;
+  const defNext = (dateStr, urgent) => addDays(dateStr || today(), urgent ? NEXT_DAYS_URGENT : NEXT_DAYS);
+  const nextField = (val, hint) => `<div class="full"><label>FU berikutnya (opsional)<input name="next" type="date" value="${esc(val || '')}"></label>
+    <div class="qd">Cepat: <button type="button" data-addd="1">+1 hari</button><button type="button" data-addd="3">+3 hari</button><button type="button" data-addd="7">+7 hari</button><button type="button" data-addd="0">Kosongkan</button>${hint ? `<span>· ${hint}</span>` : ''}</div></div>`;
+  const wireNext = () => document.querySelectorAll('[data-addd]').forEach(b => b.onclick = () => {
+    const f = b.closest('form'), base = f.querySelector('[name=date]'), n = +b.dataset.addd, nx = f.querySelector('[name=next]');
+    nx.value = n ? addDays(base ? base.value : today(), n) : ''; nx.dataset.touched = '1';
+  });
+  const wireAutoNext = f => {
+    const date = f.querySelector('[name=date]'), nx = f.querySelector('[name=next]'), urg = f.querySelector('[name=urgent]');
+    const upd = () => { if (!nx.dataset.touched) nx.value = defNext(date && date.value, urg && urg.checked); };
+    nx.addEventListener('input', () => nx.dataset.touched = '1');
+    [date, urg].forEach(e => e && ['input', 'change'].forEach(ev => e.addEventListener(ev, upd)));
+    upd();
+  };
+  const wireRcv = f => { const st = f.querySelector('[name=status]'), l = f.querySelector('.rcvL'); const t = () => l.hidden = st.value !== PART; st.onchange = t; t(); };
+  const readRcv = (d, qty) => {
+    if (d.status === 'Sudah Diterima') return { ok: true, rcv: qty };
+    if (d.status !== PART) return { ok: true, rcv: 0 };
+    const r = parseFloat(d.rcv);
+    if (!(r > 0 && r < qty)) { alert(`Untuk "Sebagian Diterima", isi qty yang sudah diterima antara 0 dan ${qty} (qty MSR). Jika semuanya sudah datang, pilih "Sudah Diterima".`); return { ok: false }; }
+    return { ok: true, rcv: r };
+  };
+  const opts = (list, sel) => list.map(o => `<option ${o === sel ? 'selected' : ''}>${esc(o)}</option>`).join('');
+  const reqOpts = sel => opts([...new Set([...reqs, sel].filter(Boolean))], sel) + '<option value="__new__">+ Tambah requester baru…</option>';
+  const applyReqs = (i, arr) => { i.reqs = [...new Set(arr)]; i.req = i.reqs.join(', '); };
+  const reqInline = i => i.reqs.map((r, k) => `<div class="rr"><select data-id="${i.id}" data-k="${k}" data-f="rn" title="${esc(r)}">${reqOpts(r)}</select>
+    <button class="d" data-act="rmreq" data-id="${i.id}" data-k="${k}" title="Hapus requester ini">✕</button></div>`).join('')
+    + `<button class="addq" data-act="addreq" data-id="${i.id}">+ Requester</button>`;
+  const reqCell = i => i.reqs.map(esc).join('<br>');
+  const reqRow = n => `<div class="rr"><select data-k="n">${reqOpts(n)}</select><button type="button" class="d" data-rmrow title="Hapus baris">✕</button></div>`;
+  const reqBlock = (arr = ['']) => `<div class="full"><b>Requester</b> <small class="msg">(boleh lebih dari satu)</small>
+    <div id="rrows">${arr.map(reqRow).join('')}</div>
+    <div class="rr-foot"><button type="button" id="addReq">+ Tambah requester</button></div></div>`;
+  const readReqs = () => [...new Set([...document.querySelectorAll('#rrows [data-k=n]')].map(e => e.value).filter(n => n && n !== '__new__'))];
+  const wireReqs = () => {
+    $('#addReq').onclick = () => $('#rrows').insertAdjacentHTML('beforeend', reqRow(reqs.find(r => !readReqs().includes(r)) || ''));
+    $('#rrows').addEventListener('click', e => {
+      const b = e.target.closest('[data-rmrow]'); if (!b) return;
+      if (document.querySelectorAll('#rrows .rr').length > 1) b.closest('.rr').remove();
+    });
+  };
+  function modal(title, html) { dlg.classList.remove('wide'); $('#dT').textContent = title; $('#dB').innerHTML = html; if (!dlg.open) dlg.showModal(); }
+  const form = (id, fn) => $(id).addEventListener('submit', async e => {
+    e.preventDefault(); const btn = e.submitter; if (btn) btn.disabled = true;
+    try { await fn(Object.fromEntries(new FormData(e.target))); }
+    catch (err) { alert('Gagal menyimpan: ' + (err.message || err)); await reload(); }
+    finally { if (btn) btn.disabled = false; }
+  });
+
+  /* ----- pemetaan data <-> database ----- */
+  const okStatus = s => STATUS.includes(s) ? s : 'Belum Diterima';
+  const okDate = s => /^\d{4}-\d{2}-\d{2}/.test(String(s || '')) ? String(s).slice(0, 10) : null;
+  const fixItem = i => {
+    i.part = i.part ?? ''; i.desc = i.desc ?? ''; i.msr = i.msr ?? ''; i.vendor = i.vendor ?? '';
+    i.status = okStatus(i.status); i.po = i.po ?? ''; i.stock = i.stock ?? null; i.qty = parseFloat(i.qty) || 1;
+    i.urgent = !!i.urgent; i.next = i.next || ''; i.rcv = i.status === 'Sudah Diterima' ? i.qty : (parseFloat(i.rcv) || 0);
+    i.logs = Array.isArray(i.logs) ? i.logs : [];
+    i.reqs = [...new Set((i.reqs || [i.req || '-']).map(r => typeof r === 'string' ? r : r.n))];
+    i.req = i.reqs.join(', ');
+    return i;
+  };
+  const mapLog = l => ({ id: l.id, date: l.log_date, status: l.status, po: l.po || '', note: l.note || '', rcv: +l.rcv || 0, next: l.next_fu || '', edits: l.edits || [], imported: l.imported, by: l.created_by, at: l.created_at });
+  const mapItem = (r, logs) => fixItem({ id: r.id, part: r.part, desc: r.descr || '', msr: r.msr, vendor: r.vendor || '', qty: +r.qty, po: r.po || '', stock: r.stock_manual == null ? null : +r.stock_manual,
+    status: r.status, rcv: +r.rcv, urgent: r.urgent, next: r.next_fu || '', reqs: r.reqs || [], legacy: r.legacy_id, logs: (logs || []).map(mapLog) });
+  const itemRow = i => ({ part: i.part, descr: i.desc, msr: i.msr, vendor: i.vendor || null, qty: i.qty, po: i.po || null, stock_manual: i.stock, status: i.status,
+    rcv: i.rcv || 0, urgent: !!i.urgent, next_fu: i.next || null, reqs: i.reqs });
+  const logRow = l => ({ log_date: okDate(l.date) || today(), status: okStatus(l.status), po: l.po || null, note: l.note || '', rcv: +l.rcv || 0, next_fu: okDate(l.next), edits: l.edits || [] });
+  const chk = r => { if (r.error) throw r.error; return r; };
+
+  async function load() {
+    const [rq, its, lgs, meta] = await Promise.all([
+      sb.from('requesters').select('name').order('name'),
+      fetchAll(() => sb.from('followup_items').select('*').order('id', { ascending: false })),
+      fetchAll(() => sb.from('followup_logs').select('*').order('id')),
+      sb.from('stock_qty_meta').select('*').maybeSingle()]);
+    reqs = (rq.data || []).map(r => r.name);
+    const by = {}; lgs.forEach(l => (by[l.item_id] = by[l.item_id] || []).push(l));
+    items = its.map(r => mapItem(r, by[r.id]));
+    stockMeta = meta.data || null;
+    await ensureStock(items.map(i => i.part));
+  }
+  const reload = async () => { try { await load(); } catch (e) { alert('Gagal memuat data: ' + e.message); } render(); };
+  const persistItem = async i => chk(await sb.from('followup_items').update(itemRow(i)).eq('id', i.id));
+
+  // Membuat item baru (beserta log pertama). list = urutan tampil (yang pertama paling atas)
+  async function createItems(list, imported) {
+    const rev = [...list].reverse();
+    for (let s = 0; s < rev.length; s += 200) {
+      const part = rev.slice(s, s + 200);
+      const ins = chk(await sb.from('followup_items').insert(part.map(i => ({ ...itemRow(i), legacy_id: i.legacyKey || null }))).select('id')).data.map(r => r.id).sort((a, b) => a - b);
+      part.forEach((i, k) => i.id = ins[k]);
+      const logs = part.flatMap(i => i.logs.map(l => ({ ...logRow(l), item_id: i.id, imported: !!imported })));
+      for (let t = 0; t < logs.length; t += 500) chk(await sb.from('followup_logs').insert(logs.slice(t, t + 500)));
+    }
+    await reload();   // ambil ulang agar id log & cap waktu server ikut
+  }
+  const newItem = (d, note) => {
+    const it = { part: d.part, desc: d.desc, msr: d.msr, vendor: d.vendor, qty: parseFloat(d.qty) || 1, po: (d.po || '').trim(), stock: null,
+      status: STATUS[0], rcv: 0, urgent: !!d.urgent, next: d.next || '', logs: [{ date: d.date, status: STATUS[0], po: (d.po || '').trim(), note, rcv: 0, next: d.next || '' }] };
+    applyReqs(it, d.reqs || [d.req]); return it;
+  };
+
+  /* ----- database stok Accurate (tersimpan di server, dipakai bersama) ----- */
+  const norm = s => String(s ?? '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+  const dbGet = part => { const m = stockCache.get(norm(part)); return m ? { total: m.total, wh: m.wh, name: m.nama } : null; };
+  async function ensureStock(parts) {
+    const need = [...new Set(parts.map(norm).filter(k => k && !stockCache.has(k)))];
+    for (let s = 0; s < need.length; s += 60) {
+      const ch = need.slice(s, s + 60), r = await sb.from('stock_qty').select('*').in('kode_norm', ch);
+      if (r.error) return; const got = new Set();
+      (r.data || []).forEach(x => { stockCache.set(x.kode_norm, x); got.add(x.kode_norm); });
+      ch.forEach(k => { if (!got.has(k)) stockCache.set(k, null); });
+    }
+  }
+  const stockOf = i => dbGet(i.part) || { total: i.stock, wh: i.wh };
+  const chips = wh => wh && Object.keys(wh).length ? `<div class="whs">${Object.entries(wh).map(([k, v]) => `<span class="wh ${v > 0 ? 'on' : ''}" title="Gudang ${esc(k)}">${esc(k)}: <b>${esc(v)}</b></span>`).join('')}</div>` : '';
+  const stockMini = part => {
+    if (!String(part || '').trim()) return '';
+    const m = dbGet(part);
+    return m ? `<span class="bd ${m.total > 0 ? 'fu-ok' : 'fu-bad'}">Total ${m.total}</span>` + chips(m.wh)
+             : `<small>${stockMeta ? 'tidak ada di database' : 'database belum diupload'}</small>`;
+  };
+  const hint = part => {
+    if (!String(part || '').trim()) return '';
+    const m = dbGet(part);
+    if (!stockMeta) return '<span class="msg">Database stok belum diupload (tombol Sync Stok Accurate).</span>';
+    if (!m) return '<span class="msg">Part ini tidak ditemukan di database stok Accurate.</span>';
+    return `<b>Stok gudang saat ini: Total ${esc(m.total)}</b>${chips(m.wh)}${m.name ? `<small>${esc(m.name)}</small>` : ''}`;
+  };
+  const debounced = (el, fn) => { clearTimeout(el._t); el._t = setTimeout(fn, 250); };
+
+  /* ===== RENDER ===== */
+  function render() {
+    const q = $('#q').value.toLowerCase(), f = $('#flt').value;
+    const list = items.filter(i => [i.part, i.msr, i.vendor, i.req, i.desc].join(' ').toLowerCase().includes(q) && matchStatus(i, f));
+    if (sort.k) {
+      const g = SORTERS[sort.k];
+      list.sort((a, b) => { if (sort.k === 'next' && (!a.next || !b.next)) return (!a.next - !b.next); return cmp(g(a), g(b)) * sort.dir; });
+    }
+    document.querySelectorAll('.wrap thead [data-sort]').forEach(e => { e.classList.toggle('asc', e.dataset.sort === sort.k && sort.dir > 0); e.classList.toggle('desc', e.dataset.sort === sort.k && sort.dir < 0); });
+    const on = k => f === k ? ' on' : '';
+    $('#stats').innerHTML =
+      `<div class="stat${on('all')}" data-f="all"><b>${items.length}</b><span>Total Part Follow-up</span></div>` +
+      `<div class="stat w${on('belum')}" data-f="belum" title="Termasuk yang baru diterima sebagian"><b>${items.filter(i => !done(i)).length}</b><span>Belum Diterima</span></div>` +
+      `<div class="stat c${on('crit')}" data-f="crit"><b>${items.filter(isCrit).length}</b><span>Perlu Perhatian (FU ≥ ${CRIT}x)</span></div>` +
+      `<div class="stat g${on('sudah')}" data-f="sudah"><b>${items.filter(done).length}</b><span>Sudah Diterima</span></div>` +
+      `<div class="stat d${on('due')}" data-f="due" title="FU berikutnya jatuh tempo hari ini atau sudah terlewat"><b>${items.filter(isDue).length}</b><span>Jatuh Tempo FU</span></div>`;
+    const days = stockMeta ? Math.floor((Date.now() - new Date(stockMeta.synced_at)) / 864e5) : 0;
+    $('#dbinfo').innerHTML = stockMeta
+      ? `Database stok: ${esc(stockMeta.file)} · disinkron ${fmtTs(stockMeta.synced_at)} · ${num(stockMeta.items)} barang${stockMeta.wh && stockMeta.wh.length ? ' · gudang ' + esc(stockMeta.wh.join(', ')) : ''}` +
+        (days >= 7 ? ` · <b style="color:var(--am)">sudah ${days} hari, sync ulang agar stok akurat</b>` : '')
+      : 'Database stok belum diupload. ' + (canWrite ? 'Klik “Sync Stok Accurate” agar stok gudang tampil otomatis.' : 'Minta editor melakukan Sync Stok Accurate.');
+    const longest = Math.max(10, ...[...reqs, ...items.flatMap(i => i.reqs)].map(r => String(r).length));
+    $('.wrap').style.setProperty('--rw', Math.min(longest + 5, 44) + 'ch');
+    $('#tb').innerHTML = list.length ? list.map(row).join('') :
+      `<tr><td colspan="9" class="empty">${items.length ? 'Tidak ada data yang cocok.' : 'Belum ada data.' + (canWrite ? ' Klik “+ Single Item” atau “+ Batch MSR”.' : '')}</td></tr>`;
+    fit();
+  }
+  function row(i) {
+    const n = i.logs.length, l = last(i);
+    const cls = done(i) ? 'fu-ok' : n >= 5 ? 'fu-bad' : n >= CRIT ? 'fu-warn' : 'fu-ok';
+    const sk = stockOf(i);
+    const stk = (sk.total == null ? `<span class="bd fu-no">${stockMeta ? 'Tidak ada di database' : 'Belum sync'}</span>`
+      : `<span class="bd ${sk.total >= i.qty ? 'fu-ok' : 'fu-bad'}">Total ${sk.total}</span>`) + chips(sk.wh);
+    return `<tr class="${isCrit(i) ? 'crit' : ''}${i.urgent ? ' urg' : ''}">
+      <td><span class="bd ${cls}">${n}x FU</span><label class="ug${i.urgent ? ' on' : ''}" title="Urgent: reminder FU H+${NEXT_DAYS_URGENT}"><input type="checkbox" data-f="urg" data-id="${i.id}" ${i.urgent ? 'checked' : ''} ${canWrite ? '' : 'disabled'}> Urgent</label></td>
+      <td><b>${esc(i.part)}</b>${i.urgent ? ' <span class="bd fu-bad">URGENT</span>' : ''}<small>${esc(i.desc)}</small></td>
+      <td>${esc(i.msr)}<small>${esc(i.vendor)}</small></td>
+      <td class="rcell">${canWrite ? reqInline(i) : reqCell(i)}</td>
+      <td>${esc(i.qty)}<small>${i.po ? 'PO ' + esc(i.po) : 'PO belum ada'}</small></td>
+      <td>${stk}</td>
+      <td>${statusBadge(i)}</td>
+      <td>${fmt(l.date)} ${ageBadge(i)}<small>${esc(l.note)}</small>${nextBadge(i)}</td>
+      <td class="noprint"><div class="acts">
+        ${canWrite ? `<button data-act="edit" data-id="${i.id}" title="Edit data barang">Edit</button><button data-act="log" data-id="${i.id}" title="Tambah log FU">+ Log</button>` : ''}
+        <button data-act="hist" data-id="${i.id}" title="Riwayat FU">Riwayat</button>
+        ${isAdmin ? `<button class="d" data-act="del" data-id="${i.id}" title="Hapus (khusus admin)">Hapus</button>` : ''}</div></td></tr>`;
+  }
+
+  /* ===== KELOLA REQUESTER ===== */
+  async function addReq(n) { if (n && !reqs.includes(n)) { chk(await sb.from('requesters').insert({ name: n })); reqs.push(n); reqs.sort(); } }
+  async function delReq(n) { chk(await sb.from('requesters').delete().eq('name', n)); reqs = reqs.filter(r => r !== n); }
+  function reqForm() {
+    modal('Kelola Requester', `<form id="f4" class="bar"><input name="n" placeholder="Nama requester baru" required style="flex:1"><button class="p">Tambah</button></form>
+      <ul class="hist">${reqs.map((r, k) => `<li style="display:flex;justify-content:space-between;align-items:center">${esc(r)}<button type="button" class="d" data-del="${k}">Hapus</button></li>`).join('')}</ul>
+      <p class="msg">Menghapus requester tidak mengubah data barang yang sudah tersimpan.</p>`);
+    form('#f4', async d => { await addReq(d.n.trim()); render(); reqForm(); });
+    document.querySelectorAll('[data-del]').forEach(b => b.onclick = async () => { try { await delReq(reqs[+b.dataset.del]); render(); reqForm(); } catch (e) { alert('Gagal: ' + e.message); } });
+  }
+
+  /* ===== SINGLE ITEM ===== */
+  function singleForm() {
+    modal('Tambah Single Item', `<form id="f1"><div class="g2">
+      <label>Part No<input name="part" required></label>
+      <label>No MSR<input name="msr" required></label>
+      <div class="full hint" id="hint1"></div>
+      <label class="full">Deskripsi<input name="desc" required></label>
+      <label>Qty (MSR)<input name="qty" type="number" min="1" step="any" value="1" required></label>
+      <label>Vendor<input name="vendor"></label>
+      <label>Tanggal<input name="date" type="date" value="${today()}" required></label>
+      <label>No PO (opsional)<input name="po" placeholder="Isi jika PO sudah terbit"></label>
+      <label class="full ck2"><input type="checkbox" name="urgent"> Urgent — reminder FU lebih cepat (H+${NEXT_DAYS_URGENT}, bukan H+${NEXT_DAYS})</label>
+      ${nextField('', NEXT_HINT)}
+      ${reqBlock()}
+      <label class="full">Catatan awal<textarea name="note" rows="2"></textarea></label></div>
+      <div class="ft"><button type="button" onclick="dlg.close()">Batal</button><button class="p">Simpan</button></div></form>`);
+    wireReqs(); wireNext(); wireAutoNext($('#f1'));
+    const p = $('#f1 [name=part]');
+    p.addEventListener('input', e => debounced(p, async () => {
+      await ensureStock([e.target.value]); $('#hint1').innerHTML = hint(e.target.value);
+      const m = dbGet(e.target.value), d = $('#f1 [name=desc]');
+      if (m && m.name && !d.dataset.touched) d.value = m.name;
+    }));
+    $('#f1 [name=desc]').addEventListener('input', e => e.target.dataset.touched = '1');
+    form('#f1', async d => {
+      const rq = readReqs(); if (!rq.length) return alert('Pilih minimal satu requester.');
+      await createItems([newItem({ ...d, reqs: rq, urgent: d.urgent === 'on' }, d.note)]); dlg.close();
+    });
+  }
+
+  /* ===== BATCH MSR + OCR ===== */
+  const topVal = n => { const e = document.querySelector('#f2 [name=' + n + ']'); return e ? e.value.trim() : ''; };
+  const batchRow = (r = {}) => `<tr><td><input data-k="desc" value="${esc(r.desc)}"></td><td><input data-k="part" value="${esc(r.part)}"></td>
+    <td><input data-k="qty" value="${esc(r.qty)}" style="width:70px"></td>
+    <td><input data-k="msr" value="${esc(r.msr)}" placeholder="${esc(topVal('msr') || 'sama dgn atas')}"></td>
+    <td><input data-k="vendor" value="${esc(r.vendor)}" placeholder="${esc(topVal('vendor') || 'sama dgn atas')}"></td>
+    <td><input data-k="po" value="${esc(r.po)}" placeholder="${esc(topVal('po') || 'opsional')}"></td>
+    <td style="text-align:center"><input type="checkbox" data-k="urgent" ${r.urgent ? 'checked' : ''}></td>
+    <td class="bst">${stockMini(r.part)}</td><td><button type="button" class="d" onclick="this.closest('tr').remove()">✕</button></td></tr>`;
+
+  function batchForm() {
+    modal('Tambah Batch MSR', `<form id="f2"><div class="g2">
+      <label>No MSR (semua item)<input name="msr"></label>
+      <label>Vendor (semua item)<input name="vendor"></label>
+      <p class="full msg" style="margin:0">Isi No MSR, Vendor, dan No PO di atas jika sama untuk semua item. Bila ada item yang berbeda, isi kolom MSR/Vendor/PO pada baris item itu saja.</p>
+      <label>Tanggal<input name="date" type="date" value="${today()}" required></label>
+      <label>No PO (semua item)<input name="po" placeholder="Opsional"></label>
+      <label class="full ck2"><input type="checkbox" id="allUrg"> Tandai semua item urgent (reminder H+${NEXT_DAYS_URGENT})</label>
+      ${nextField('', 'Default H+' + NEXT_DAYS + '; item urgent otomatis H+' + NEXT_DAYS_URGENT + ' (kecuali tanggal ini diubah manual).')}
+      ${reqBlock()}
+      <label class="full">Catatan awal (untuk semua item)<textarea name="note" rows="2" placeholder="Opsional"></textarea></label></div>
+      <div class="drop" id="drop" tabindex="0">Klik di sini lalu tekan <b>Ctrl+V</b> untuk paste screenshot MSR<br>atau <u>pilih file gambar</u></div>
+      <input type="file" id="img" accept="image/*" hidden>
+      <div class="msg" id="msg"></div>
+      <div class="rows-wrap"><table class="rows"><thead><tr><th>Deskripsi</th><th>Part No</th><th>Qty</th><th>MSR <small>(jika beda)</small></th><th>Vendor <small>(jika beda)</small></th><th>No PO <small>(jika beda)</small></th><th>Urgent</th><th>Stok Gudang</th><th></th></tr></thead><tbody id="rows">${batchRow()}</tbody></table></div>
+      <button type="button" id="addRow" style="margin-top:6px">+ Tambah baris</button>
+      <div class="ft"><button type="button" onclick="dlg.close()">Batal</button><button class="p">Simpan Semua Item MSR</button></div></form>`);
+    dlg.classList.add('wide');
+    wireReqs(); wireNext(); wireAutoNext($('#f2'));
+    $('#allUrg').onchange = e => document.querySelectorAll('#rows [data-k=urgent]').forEach(c => c.checked = e.target.checked);
+    $('#f2').addEventListener('input', e => {
+      if (!['msr', 'vendor', 'po'].includes(e.target.name)) return;
+      document.querySelectorAll(`#rows [data-k=${e.target.name}]`).forEach(i => i.placeholder = e.target.value.trim() || (e.target.name === 'po' ? 'opsional' : 'sama dgn atas'));
+    });
+    $('#rows').addEventListener('input', e => {
+      if (e.target.dataset.k !== 'part') return;
+      const tr = e.target.closest('tr'), v = e.target.value;
+      debounced(tr, async () => {
+        await ensureStock([v]); const m = dbGet(v), d = tr.querySelector('[data-k=desc]');
+        tr.querySelector('.bst').innerHTML = stockMini(v);
+        if (m && m.name && !d.value.trim()) d.value = m.name;
+      });
+    });
+    $('#addRow').onclick = () => $('#rows').insertAdjacentHTML('beforeend', batchRow({ urgent: $('#allUrg').checked }));
+    $('#drop').onclick = () => $('#img').click();
+    $('#img').onchange = e => e.target.files[0] && runOCR(e.target.files[0]);
+    const dz = $('#drop');
+    dz.ondragover = e => { e.preventDefault(); dz.style.background = '#e6f0ff'; };
+    dz.ondragleave = () => dz.style.background = '';
+    dz.ondrop = e => { e.preventDefault(); dz.style.background = ''; const f = e.dataTransfer.files[0]; if (f) runOCR(f); };
+    setTimeout(() => dz.focus(), 50);
+    form('#f2', async d => {
+      const rows = [...document.querySelectorAll('#rows tr')].map(tr => {
+        const v = {}; tr.querySelectorAll('input').forEach(i => v[i.dataset.k] = i.type === 'checkbox' ? i.checked : i.value.trim()); return v;
+      }).filter(r => r.part || r.desc);
+      if (!rows.length) return alert('Belum ada item.');
+      const rq = readReqs(); if (!rq.length) return alert('Pilih minimal satu requester.');
+      const topMsr = d.msr.trim(), topVendor = d.vendor.trim(), topPo = d.po.trim(), manualNext = !!$('#f2 [name=next]').dataset.touched;
+      const bad = rows.findIndex(r => !(r.msr || topMsr));
+      if (bad >= 0) return alert(`Baris ke-${bad + 1} belum punya No MSR. Isi No MSR di atas (untuk semua item) atau di kolom MSR pada baris itu.`);
+      const note = d.note.trim() || 'Input batch MSR';
+      await createItems(rows.map(r => newItem({ date: d.date, part: r.part, desc: r.desc, qty: r.qty || 1,
+        msr: r.msr || topMsr, vendor: r.vendor || topVendor, po: r.po || topPo, urgent: !!r.urgent, next: manualNext ? (d.next || '') : defNext(d.date, r.urgent), reqs: rq }, note)));
+      dlg.close();
+    });
+  }
+  document.addEventListener('paste', e => {
+    if (!dlg.open || !$('#drop')) return;
+    const f = [...e.clipboardData.items].find(i => i.type.startsWith('image/'));
+    if (f) { e.preventDefault(); runOCR(f.getAsFile()); }
+  });
+  async function runOCR(file) {
+    const msg = $('#msg');
+    if (typeof Tesseract === 'undefined') { msg.textContent = 'Tesseract belum termuat. Cek koneksi internet lalu muat ulang halaman.'; return; }
+    msg.textContent = 'Membaca gambar…';
+    try {
+      const data = await recog(file, msg);
+      const rows = parseOCR(data.text);
+      if (!rows.length) { msg.textContent = 'Tidak ada baris terbaca. Coba screenshot yang lebih jelas atau isi manual.'; return; }
+      await ensureStock(rows.map(r => r.part));
+      $('#rows').innerHTML = rows.map(r => batchRow({ ...r, urgent: $('#allUrg').checked })).join('');
+      msg.textContent = `${rows.length} baris terbaca. Periksa dan revisi bila perlu.`;
+    } catch (err) {
+      msg.textContent = 'OCR gagal: ' + err.message + '. Pastikan perangkat terhubung internet (OCR memuat data bahasa saat pertama kali dipakai). Sementara itu, isi baris secara manual.';
+    }
+  }
+  async function recog(file, msg) {
+    const logger = m => m.status === 'recognizing text' && (msg.textContent = `Membaca teks… ${Math.round(m.progress * 100)}%`);
+    try { return (await Tesseract.recognize(file, 'eng', { logger })).data; }
+    catch (e) {
+      const js = await (await fetch('https://cdn.jsdelivr.net/npm/tesseract.js@5.1.1/dist/worker.min.js')).text();
+      const workerPath = URL.createObjectURL(new Blob([js], { type: 'text/javascript' }));
+      return (await Tesseract.recognize(file, 'eng', { logger, workerPath, workerBlobURL: false })).data;
+    }
+  }
+  function parseOCR(text) {
+    const qRe = /(\d+(?:[.,]\d+)?)\s*(?:set|pcs|pes|pc|unit|ea|buah|ltr|kg|mtr|roll|pack|bh|lbr)\b/i;
+    const clean = t => t.replace(/^[^A-Za-z0-9]+|[^A-Za-z0-9]+$/g, '').toUpperCase();
+    const fix = t => /^[0-9OIL|]{7,}$/.test(t) && (t.match(/\d/g) || []).length >= t.length * 0.4 ? t.replace(/O/g, '0').replace(/[IL|]/g, '1') : t;
+    const isCode = t => /^(?=.*\d)(?=.*[A-Z])[A-Z0-9-]{6,}$/.test(t) || /^\d{7,}$/.test(t);
+    return text.split('\n').map(l => l.trim()).filter(l => l.length > 4).map(l => {
+      let q = l.match(qRe), qty = q ? q[1] : '', body = q ? l.slice(0, q.index) : l;
+      if (!q) { const m = l.match(/\s(\d{1,5}(?:[.,]\d+)?)\s*$/); if (m) { qty = m[1]; body = l.slice(0, m.index); } }
+      const toks = [...body.matchAll(/\S+/g)].map(m => ({ s: m[0], i: m.index, c: fix(clean(m[0])) }));
+      const codes = toks.filter(t => isCode(t.c));
+      const code = codes[codes.length - 1];
+      if (!code && !qty) return null;
+      let desc = body;
+      if (code) desc = code.i < 3 ? body.slice(code.i + code.s.length) : body.slice(0, code.i);
+      desc = desc.replace(/[|_]+/g, ' ').replace(/^[\s\-–:,]+|[\s\-–:,]+$/g, '').replace(/\s+/g, ' ');
+      return { desc, part: code ? code.c : '', qty: qty.replace(',', '.') };
+    }).filter(Boolean);
+  }
+
+  /* ===== EDIT ITEM ===== */
+  function editForm(id) {
+    const i = items.find(x => x.id === id);
+    modal('Edit Data: ' + i.part, `<form id="f5"><div class="g2">
+      <label>Part No<input name="part" value="${esc(i.part)}" required></label>
+      <label>No MSR<input name="msr" value="${esc(i.msr)}" required></label>
+      <label class="full">Deskripsi<input name="desc" value="${esc(i.desc)}" required></label>
+      <label>Qty (MSR)<input name="qty" type="number" min="1" step="any" value="${esc(i.qty)}" required></label>
+      <label>Vendor<input name="vendor" value="${esc(i.vendor)}"></label>
+      <label>No PO<input name="po" value="${esc(i.po)}"></label>
+      <label>Status Barang<select name="status">${opts(STATUS, i.status)}</select></label>
+      <label class="rcvL" ${i.status === PART ? '' : 'hidden'}>Qty diterima (total)<input name="rcv" type="number" min="0" step="any" value="${i.status === PART ? esc(i.rcv || '') : ''}" placeholder="dari ${esc(i.qty)}"></label>
+      <label>Stok manual<input name="stock" type="number" step="any" value="${i.stock ?? ''}" placeholder="Hanya dipakai jika tidak ada di database"></label>
+      <label class="full ck2"><input type="checkbox" name="urgent" ${i.urgent ? 'checked' : ''}> Urgent</label>
+      ${nextField(i.next)}
+      ${reqBlock(i.reqs)}
+      <div class="full hint" id="hint5">${hint(i.part)}</div></div>
+      <p class="msg">Untuk menambah follow-up baru, gunakan tombol “+ Log”.</p>
+      <div class="ft"><button type="button" onclick="dlg.close()">Batal</button><button class="p">Simpan perubahan</button></div></form>`);
+    wireReqs(); wireNext(); wireRcv($('#f5'));
+    const p = $('#f5 [name=part]');
+    p.addEventListener('input', e => debounced(p, async () => { await ensureStock([e.target.value]); $('#hint5').innerHTML = hint(e.target.value); }));
+    form('#f5', async d => {
+      const rq = readReqs(); if (!rq.length) return alert('Pilih minimal satu requester.');
+      const r = readRcv(d, parseFloat(d.qty) || i.qty); if (!r.ok) return;
+      Object.assign(i, { urgent: d.urgent === 'on', rcv: r.rcv, next: d.status === 'Sudah Diterima' ? '' : (d.next || ''), qty: parseFloat(d.qty) || i.qty, part: d.part.trim(), msr: d.msr.trim(), desc: d.desc.trim(), vendor: d.vendor.trim(),
+        po: d.po.trim(), status: d.status, stock: d.stock === '' ? null : +d.stock });
+      applyReqs(i, rq);
+      await persistItem(i); await ensureStock([i.part]); render(); dlg.close();
+    });
+  }
+
+  /* ===== LOG & RIWAYAT ===== */
+  function logForm(id) {
+    const i = items.find(x => x.id === id);
+    modal('Tambah Log FU: ' + i.part, `<form id="f3"><div class="g2">
+      <label>Tanggal FU<input name="date" type="date" value="${today()}" required></label>
+      <label>Status Barang<select name="status">${opts(STATUS, i.status)}</select></label>
+      <label class="rcvL full" ${i.status === PART ? '' : 'hidden'}>Qty diterima (total sampai saat ini)<input name="rcv" type="number" min="0" step="any" value="${i.status === PART ? esc(i.rcv || '') : ''}" placeholder="dari ${esc(i.qty)} qty MSR"></label>
+      <label class="full">No PO<input name="po" value="${esc(i.po)}" placeholder="Isi jika PO baru terbit"></label>
+      <label class="full ck2"><input type="checkbox" name="urgent" ${i.urgent ? 'checked' : ''}> Urgent</label>
+      ${nextField('', NEXT_HINT)}
+      <label class="full">Catatan respon procurement<textarea name="note" rows="3" required></textarea></label></div>
+      <div class="ft"><button type="button" onclick="dlg.close()">Batal</button><button class="p">Simpan log</button></div></form>`);
+    wireNext(); wireRcv($('#f3')); wireAutoNext($('#f3'));
+    form('#f3', async d => {
+      const r = readRcv(d, i.qty); if (!r.ok) return;
+      const next = d.status === 'Sudah Diterima' ? '' : (d.next || '');
+      const log = { date: d.date, status: d.status, po: d.po, note: d.note, rcv: r.rcv, next };
+      const ins = chk(await sb.from('followup_logs').insert({ ...logRow(log), item_id: i.id }).select('*')).data[0];
+      Object.assign(i, { status: d.status, po: d.po, rcv: r.rcv, next, urgent: d.urgent === 'on' });
+      i.logs.push(mapLog(ins));
+      await persistItem(i); render(); dlg.close();
+    });
+  }
+  const editTrail = l => !(l.edits && l.edits.length) ? '' :
+    `<details><summary>Diedit ${l.edits.length}× · terakhir ${fmtTs(l.edits[l.edits.length - 1].at)}</summary>` +
+    [...l.edits].reverse().map(e => `<div class="edl"><b>${fmtTs(e.at)}</b>${e.by ? ' · ' + esc(e.by) : ''}${e.why ? ' — ' + esc(e.why) : ''}<br>` +
+      e.changes.map(c => `${esc(c.f)}: <s>${esc(c.from || '-')}</s> → <b>${esc(c.to || '-')}</b>`).join('<br>') + '</div>').join('') + '</details>';
+
+  function history(id) {
+    const i = items.find(x => x.id === id), n = i.logs.length;
+    modal('Riwayat FU: ' + i.part, `<p>${esc(i.desc)}<br><small>MSR ${esc(i.msr)} · ${esc(i.vendor)}</small></p><ul class="hist">` +
+      [...i.logs].reverse().map((l, k) => `<li><b>FU ke-${n - k}</b> · ${fmt(l.date)} · ${esc(l.status)}${l.status === PART ? ' ' + esc(l.rcv || 0) + '/' + esc(i.qty) : ''}${l.po ? ' · PO ' + esc(l.po) : ''}${l.next ? ' · FU lagi ' + fmt(l.next) : ''}${l.edits && l.edits.length ? ' <span class="bd fu-warn">diedit</span>' : ''}${l.imported ? ' <span class="bd fu-no">diimpor</span>' : ''}
+        <div>${esc(l.note)}</div><small class="msg">dicatat ${l.at ? fmtTs(l.at) : '-'} oleh ${esc(names[l.by] || '-')}</small>
+        <div class="la">${canWrite ? `<button type="button" data-editlog="${n - 1 - k}">Edit</button>` : ''}${isAdmin && n > 1 ? `<button type="button" class="d" data-dellog="${n - 1 - k}">Hapus log ini</button>` : ''}</div>${editTrail(l)}</li>`).join('') + '</ul>');
+    document.querySelectorAll('[data-editlog]').forEach(b => b.onclick = () => editLog(id, +b.dataset.editlog));
+    document.querySelectorAll('[data-dellog]').forEach(b => b.onclick = async () => {
+      if (!confirm('Hapus log ini? Jumlah FU akan berkurang. (Tercatat di jejak audit)')) return;
+      try {
+        const idx = +b.dataset.dellog, lg = i.logs[idx];
+        chk(await sb.from('followup_logs').delete().eq('id', lg.id));
+        i.logs.splice(idx, 1);
+        const l = last(i); i.status = l.status || i.status;
+        i.po = ([...i.logs].reverse().find(x => x.po) || {}).po || '';
+        i.rcv = l.rcv ?? (done(i) ? i.qty : 0); i.next = done(i) ? '' : (l.next || '');
+        await persistItem(i); render(); history(id);
+      } catch (e) { alert('Gagal: ' + e.message); await reload(); }
+    });
+  }
+  function editLog(id, idx) {
+    const i = items.find(x => x.id === id), l = i.logs[idx];
+    modal(`Edit Follow-up ke-${idx + 1}: ${i.part}`, `<form id="f6"><div class="g2">
+      <label>Tanggal FU<input name="date" type="date" value="${esc(l.date)}" required></label>
+      <label>Status Barang<select name="status">${opts(STATUS, l.status)}</select></label>
+      <label class="rcvL full" ${l.status === PART ? '' : 'hidden'}>Qty diterima (total sampai saat itu)<input name="rcv" type="number" min="0" step="any" value="${l.status === PART ? esc(l.rcv || '') : ''}" placeholder="dari ${esc(i.qty)} qty MSR"></label>
+      <label class="full">No PO<input name="po" value="${esc(l.po)}"></label>
+      ${nextField(l.next)}
+      <label class="full">Catatan respon procurement<textarea name="note" rows="3" required>${esc(l.note)}</textarea></label>
+      <label class="full">Alasan perubahan (opsional)<input name="why" placeholder="mis. salah ketik tanggal"></label></div>
+      <p class="msg">Perubahan dicatat di riwayat: nilai sebelum dan sesudah, siapa, dan waktunya.</p>
+      <div class="ft"><button type="button" id="elBack">Kembali</button><button class="p">Simpan perubahan</button></div></form>`);
+    $('#elBack').onclick = () => history(id);
+    wireNext(); wireRcv($('#f6'));
+    form('#f6', async d => {
+      const r = readRcv(d, i.qty); if (!r.ok) return;
+      const next = d.status === 'Sudah Diterima' ? '' : (d.next || ''), oldRcv = l.rcv ?? (l.status === 'Sudah Diterima' ? i.qty : 0);
+      const F = [['Tanggal', fmt(l.date), fmt(d.date), l.date !== d.date], ['Status', l.status, d.status, l.status !== d.status],
+        ['No PO', l.po || '', d.po.trim(), (l.po || '') !== d.po.trim()], ['Catatan', l.note || '', d.note.trim(), (l.note || '') !== d.note.trim()],
+        ['Qty diterima', oldRcv, r.rcv, oldRcv !== r.rcv], ['FU berikutnya', fmt(l.next), fmt(next), (l.next || '') !== next]];
+      const changes = F.filter(x => x[3]).map(x => ({ f: x[0], from: x[1], to: x[2] }));
+      if (!changes.length) return history(id);
+      (l.edits = l.edits || []).push({ at: new Date().toISOString(), by: me.name, why: d.why.trim(), changes });
+      Object.assign(l, { date: d.date, status: d.status, po: d.po.trim(), note: d.note.trim(), rcv: r.rcv, next });
+      chk(await sb.from('followup_logs').update(logRow(l)).eq('id', l.id));
+      if (idx === i.logs.length - 1) { i.status = l.status; i.po = l.po; i.rcv = r.rcv; i.next = next; await persistItem(i); }
+      render(); history(id);
+    });
+  }
+
+  /* ===== SYNC STOK ACCURATE (laporan Kuantitas Barang per Gudang) ===== */
+  function syncForm() {
+    modal('Sync Stok Accurate', `<p>Unggah laporan <b>Kuantitas Barang per Gudang</b> dari Accurate (Excel .xlsx/.xls atau CSV). File ini disimpan di server sebagai <b>database stok bersama</b>: stok per gudang tampil otomatis di tabel dan saat menginput item, untuk semua pengguna. Setiap upload baru menggantikan database sebelumnya, jadi unggah rutin agar stok tetap terbaru.</p>
+      <div class="ft"><button type="button" onclick="dlg.close()">Batal</button><button class="p" id="pick">Pilih file Excel / CSV</button></div>`);
+    $('#pick').onclick = () => $('#csvFile').click();
+  }
+  const splitCSV = (line, sep) => {
+    const out = []; let cur = '', q = false;
+    for (const c of line) { if (c === '"') q = !q; else if (c === sep && !q) { out.push(cur); cur = ''; } else cur += c; }
+    return out.push(cur), out.map(s => s.trim());
+  };
+  const toNum = v => {
+    v = String(v).replace(/[^\d.,-]/g, '');
+    v = /,\d{1,2}$/.test(v) ? v.replace(/\./g, '').replace(',', '.') : v.replace(/,/g, '');
+    return parseFloat(v);
+  };
+  async function uploadStock(map, file, whList) {
+    const entries = Object.entries(map).map(([k, v]) => ({ kode_norm: k, kode: v.c || '', nama: v.n || '', total: v.t, wh: v.w }));
+    for (let s = 0; s < entries.length; s += 2000) {
+      modal('Hasil Sync', `<p>Mengunggah ke server… ${Math.min(s + 2000, entries.length)} / ${entries.length} barang</p>`);
+      chk(await sb.rpc('replace_stock_qty', { p_reset: s === 0, p_rows: entries.slice(s, s + 2000) }));
+    }
+    chk(await sb.from('stock_qty_meta').upsert({ id: 1, file, synced_at: new Date().toISOString(), wh: whList, items: entries.length, synced_by: me.id }));
+    stockCache.clear(); stockMeta = (await sb.from('stock_qty_meta').select('*').maybeSingle()).data;
+    await ensureStock(items.map(i => i.part)); render();
+  }
+  async function onStockFile(e) {
+    const file = e.target.files[0]; e.target.value = ''; if (!file) return;
+    let rows;
+    try {
+      if (/\.xlsx?$/i.test(file.name)) {
+        if (typeof XLSX === 'undefined') return alert('Pembaca Excel belum termuat. Muat ulang halaman.');
+        const wb = XLSX.read(await file.arrayBuffer());
+        rows = XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]], { header: 1, defval: '' });
+      } else {
+        const lines = (await file.text()).replace(/^\uFEFF/, '').split(/\r?\n/).filter(Boolean);
+        const sep = [';', '\t', ','].sort((a, b) => lines[0].split(b).length - lines[0].split(a).length)[0];
+        rows = lines.map(l => splitCSV(l, sep));
+      }
+    } catch (err) { return alert('File tidak bisa dibaca: ' + err.message); }
+    const kodeRe = /kode|part|no\.? ?barang|item/, stokRe = /stok|stock|kuantitas|qty|jumlah|saldo/;
+    const whRe = /^\(?\s*([a-z])\s*\)?(\s|$)/i;
+    const low = r => r.map(c => String(c).toLowerCase().replace(/\s+/g, ' ').trim());
+    const isHead = r => { const h = low(r).filter(c => c.length < 60);
+      return h.some(c => kodeRe.test(c)) && (h.some(c => stokRe.test(c) || /total/.test(c)) || h.some(c => whRe.test(c))); };
+    let hi = rows.findIndex(isHead); if (hi < 0) hi = 0;
+    const head = low(rows[hi] || []);
+    let ci = head.findIndex(h => /kode|part/.test(h)); if (ci < 0) ci = head.findIndex(h => kodeRe.test(h));
+    if (ci < 0) ci = 0;
+    const whCols = {};
+    head.forEach((h, k) => { const m = h.match(whRe); if (m && k !== ci && !(m[1].toUpperCase() in whCols)) whCols[m[1].toUpperCase()] = k; });
+    let ti = head.findIndex(h => /total/.test(h));
+    if (ti < 0 && !Object.keys(whCols).length) { ti = head.findIndex(h => /stok|stock|saldo/.test(h)); if (ti < 0) ti = head.findIndex(h => stokRe.test(h)); if (ti < 0) ti = 1; }
+    const ni = head.findIndex(h => /^nama barang|^nama item|^deskripsi|^description/.test(h));
+    const map = {}, samples = [];
+    rows.slice(hi + 1).forEach(c => {
+      const code = String(c[ci] ?? '').trim(); if (!code) return;
+      const w = {}; Object.entries(whCols).forEach(([g, idx]) => { const n = toNum(c[idx]); w[g] = isNaN(n) ? 0 : n; });
+      let total = ti >= 0 ? toNum(c[ti]) : NaN;
+      if (isNaN(total) && Object.keys(w).length) total = Object.values(w).reduce((a, b) => a + b, 0);
+      if (isNaN(total)) return;
+      map[norm(code)] = { t: total, w: Object.keys(w).length ? w : null, n: ni >= 0 ? String(c[ni] ?? '').trim() : '', c: code };
+      if (samples.length < 3) samples.push(code);
+    });
+    if (!Object.keys(map).length) return modal('Hasil Sync', '<p>Tidak ada baris barang yang terbaca. Pastikan file berisi kolom “Kode Barang” dan kolom stok/gudang.</p><div class="ft"><button class="p" onclick="dlg.close()">Tutup</button></div>');
+    try { await uploadStock(map, file.name, Object.keys(whCols)); }
+    catch (err) { return modal('Hasil Sync', `<p class="txbad">Gagal menyimpan ke server: ${esc(err.message || err)}</p><div class="ft"><button class="p" onclick="dlg.close()">Tutup</button></div>`); }
+    const hit = items.filter(i => dbGet(i.part)).length;
+    modal('Hasil Sync', `<p>Database stok diperbarui: <b>${Object.keys(map).length}</b> barang. Di tracker, <b>${hit}</b> dari ${items.length} part cocok.</p>
+      <p class="msg">Kolom kode: “${esc(head[ci])}” · kolom total: “${esc(ti >= 0 ? head[ti] : 'jumlah semua gudang')}”<br>Gudang terbaca: ${esc(Object.keys(whCols).join(', ') || 'tidak ada')}<br>Contoh kode terbaca: ${esc(samples.join(', '))}</p>
+      ${hit === 0 && items.length ? '<p class="msg">Tidak ada part tracker yang cocok. Cek apakah Part No sama dengan Kode Barang di Accurate (tanda strip dan spasi diabaikan).</p>' : ''}
+      <div class="ft"><button class="p" onclick="dlg.close()">Selesai</button></div>`);
+  }
+
+  /* ===== EXPORT PDF (pilih data) ===== */
+  let pdfReady = false;
+  const ST_LABEL = { belum: 'Belum Diterima', sebagian: 'Sebagian Diterima', sudah: 'Sudah Diterima', crit: 'Perlu Perhatian', due: 'Jatuh tempo FU', stale: 'Lama tidak di-FU', urgent: 'Urgent' };
+  const matchF = (i, f) => (!f.part || norm(i.part).includes(norm(f.part))) &&
+    (!f.desc || i.desc.toLowerCase().includes(f.desc.toLowerCase())) &&
+    (!f.msr || i.msr === f.msr) && (!f.vendor || i.vendor === f.vendor) && (!f.req || i.reqs.includes(f.req)) &&
+    matchStatus(i, f.st);
+  const printRow = (i, k) => {
+    const n = i.logs.length, l = last(i), sk = stockOf(i);
+    const cls = done(i) ? 'fu-ok' : n >= 5 ? 'fu-bad' : n >= CRIT ? 'fu-warn' : 'fu-ok';
+    return `<tr class="${isCrit(i) ? 'crit' : ''}"><td>${k + 1}</td><td><span class="bd ${cls}">${n}x</span></td><td><b>${esc(i.part)}</b>${i.urgent ? ' <span class="bd fu-bad">URGENT</span>' : ''}</td><td>${esc(i.desc)}</td>
+      <td>${esc(i.msr)}<small>${esc(i.vendor)}</small></td><td>${reqCell(i)}</td><td>${esc(i.qty)}<small>${i.po ? 'PO ' + esc(i.po) : '-'}</small></td>
+      <td>${sk.total == null ? '-' : '<b>' + esc(sk.total) + '</b>' + chips(sk.wh)}</td><td>${esc(statusText(i))}</td><td>${fmt(l.date)}${done(i) ? '' : ' (' + ageTxt(ageDays(i)) + ')'}<small>${esc(l.note)}</small>${!done(i) && i.next ? '<small>FU berikutnya: ' + fmt(i.next) + '</small>' : ''}</td></tr>`;
+  };
+  function buildPrint(list, fd) {
+    const bel = list.filter(i => !done(i)).length;
+    $('#printArea').innerHTML = `<div class="pf"><b>${fd.length ? 'Filter: ' + fd.map(esc).join(' · ') : 'Semua data'}</b> — ${list.length} part · Belum diterima: ${bel} · Perlu perhatian (FU ≥ ${CRIT}x): ${list.filter(isCrit).length} · Sudah diterima: ${list.length - bel}</div>
+      <table class="pt"><thead><tr><th>No</th><th>FU</th><th>Part No</th><th>Deskripsi</th><th>MSR / Vendor</th><th>Requester</th><th>Qty / PO</th><th>Stok Gudang</th><th>Status</th><th>Follow-up Terakhir</th></tr></thead>
+      <tbody>${list.map(printRow).join('')}</tbody><tfoot><tr><td colspan="10"></td></tr></tfoot></table>`;
+    pdfReady = true;
+  }
+  function pdfForm() {
+    if (!items.length) return alert('Belum ada data untuk diekspor.');
+    const uniq = k => [...new Set(items.flatMap(i => k === 'req' ? i.reqs : [i[k]]).filter(Boolean))].sort();
+    const sel = (n, label) => `<label>${label}<select name="${n}"><option value="">Semua</option>${uniq(n).map(v => `<option>${esc(v)}</option>`).join('')}</select></label>`;
+    modal('Export PDF', `<div class="g2" id="pf">
+      <label>Part No<input name="part" placeholder="mengandung…"></label>
+      <label>Detail Part (deskripsi)<input name="desc" placeholder="mengandung…"></label>
+      ${sel('msr', 'MSR')}${sel('vendor', 'Vendor')}${sel('req', 'Requester')}
+      <label>Status<select name="st">${filterOpts('all')}</select></label></div>
+      <div class="pl-head"><label><input type="checkbox" id="pall" checked> Pilih semua</label><span id="pcnt" class="msg"></span></div>
+      <div class="pl" id="plist"></div>
+      <div class="ft"><button type="button" onclick="dlg.close()">Batal</button><button class="p" id="pgo">Cetak / Simpan PDF</button></div>`);
+    let matched = [];
+    const getF = () => Object.fromEntries([...document.querySelectorAll('#pf input,#pf select')].map(e => [e.name, e.value.trim()]));
+    const chosen = () => [...document.querySelectorAll('#plist [data-pid]:checked')].map(c => c.dataset.pid);
+    const upd = () => { const n = chosen().length; $('#pcnt').textContent = `${n} dari ${matched.length} data dipilih`;
+      $('#pgo').textContent = `Cetak / Simpan PDF (${n})`; $('#pgo').disabled = !n; $('#pall').checked = n > 0 && n === matched.length; };
+    const draw = () => {
+      matched = items.filter(i => matchF(i, getF()));
+      $('#plist').innerHTML = matched.length ? matched.map(i => `<label class="ck"><input type="checkbox" data-pid="${i.id}" checked>
+        <span><b>${esc(i.part)}</b> · ${esc(i.desc)}<br><small>MSR ${esc(i.msr)} · ${esc(i.vendor)} · ${esc(i.req)} · ${esc(i.status)} · ${i.logs.length}x FU</small></span></label>`).join('')
+        : '<div class="empty">Tidak ada data yang cocok dengan filter.</div>';
+      upd();
+    };
+    $('#pf').addEventListener('input', draw); $('#pf').addEventListener('change', draw);
+    $('#plist').addEventListener('change', upd);
+    $('#pall').addEventListener('change', e => { document.querySelectorAll('#plist [data-pid]').forEach(c => c.checked = e.target.checked); upd(); });
+    $('#pgo').onclick = () => {
+      const ids = new Set(chosen()), f = getF();
+      const fd = [f.part && `Part No “${f.part}”`, f.desc && `Detail “${f.desc}”`, f.msr && `MSR ${f.msr}`, f.vendor && `Vendor ${f.vendor}`, f.req && `Requester ${f.req}`, f.st && f.st !== 'all' && `Status ${ST_LABEL[f.st]}`].filter(Boolean);
+      if (ids.size < matched.length) fd.push('dipilih manual');
+      buildPrint(items.filter(i => ids.has(String(i.id))), fd);
+      dlg.close(); setTimeout(() => window.print(), 150);
+    };
+    draw();
+  }
+
+  /* ===== BACKUP / RESTORE (format sama dengan tracker lama) ===== */
+  function backupForm() {
+    modal('Backup / Restore Data', `<p>File backup berisi <b>semua data follow-up</b> (${items.length} item) dan daftar requester, dalam format yang sama dengan file tracker lama. Fitur Restore bisa dipakai untuk <b>memindahkan data dari tracker lama (file HTML)</b> ke STP Parts.</p>
+      <button class="p" id="bkDl">Download Backup (.json)</button>
+      <hr style="border:0;border-top:1px solid var(--line);margin:18px 0">
+      <b>Restore dari file backup (.json)</b>
+      <p class="msg">Data digabungkan: item yang sudah ada (dikenali dari ID asal) dilewati, data sekarang tetap aman. Log hasil impor ditandai “diimpor”.</p>
+      <div style="margin-top:12px"><button id="bkPick">Pilih file backup…</button></div>
+      <input type="file" id="bkFile" accept=".json,application/json" hidden>
+      <p class="msg" id="bkMsg"></p>`);
+    $('#bkDl').onclick = () => {
+      const data = { app: 'sparepart-tracker', version: 1, saved: new Date().toISOString(), requesters: reqs, stockDB: null,
+        items: items.map(i => ({ id: i.legacy || String(i.id), part: i.part, desc: i.desc, msr: i.msr, vendor: i.vendor, qty: i.qty, po: i.po, stock: i.stock, status: i.status, rcv: i.rcv, urgent: i.urgent, next: i.next, reqs: i.reqs,
+          logs: i.logs.map(l => ({ date: l.date, status: l.status, po: l.po, note: l.note, rcv: l.rcv, next: l.next, edits: l.edits })) })) };
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(new Blob([JSON.stringify(data)], { type: 'application/json' }));
+      a.download = `backup-tracker-${today()}.json`; a.click(); URL.revokeObjectURL(a.href);
+    };
+    $('#bkPick').onclick = () => $('#bkFile').click();
+    $('#bkFile').onchange = async e => {
+      const f = e.target.files[0]; if (!f) return; const msg = $('#bkMsg');
+      let d; try { d = JSON.parse((await f.text()).replace(/^\uFEFF/, '')); } catch (err) { msg.textContent = 'File tidak bisa dibaca. Pastikan ini file backup (.json) dari tracker.'; return; }
+      const inc = Array.isArray(d) ? d : d.items;
+      if (!Array.isArray(inc)) { msg.textContent = 'Format file tidak dikenali.'; return; }
+      msg.textContent = 'Mengimpor…';
+      try {
+        const have = new Set(items.map(i => i.legacy).filter(Boolean));
+        const fresh = inc.map(x => { const it = fixItem({ ...x }); it.legacyKey = String(x.id ?? uid()); return it; }).filter(i => !have.has(i.legacyKey));
+        const skipped = inc.length - fresh.length;
+        if (Array.isArray(d.requesters)) for (const r of d.requesters) { try { await addReq(String(r).trim()); } catch (e2) {} }
+        if (fresh.length) await createItems(fresh, true);
+        modal('Restore Selesai', `<p><b>${fresh.length}</b> item ditambahkan${skipped ? `, ${skipped} dilewati karena sudah ada` : ''}.</p><div class="ft"><button class="p" onclick="dlg.close()">Selesai</button></div>`);
+      } catch (err) { msg.textContent = 'Gagal impor: ' + (err.message || err); await reload(); }
+    };
+  }
+
+  /* ===== EXPORT CSV ===== */
+  function exportCSV() {
+    const WK = [...new Set(items.flatMap(i => Object.keys(stockOf(i).wh || {})))];
+    const H = ['Part No','Deskripsi','MSR','Vendor','Requester','Qty','PO','Stok Total', ...WK.map(k => 'Stok ' + k),'Status','Qty Diterima','Jumlah FU','FU Terakhir','Hari Sejak FU Terakhir','FU Berikutnya','Urgent','Catatan Terakhir'];
+    const rows = items.map(i => [i.part, i.desc, i.msr, i.vendor, i.reqs.join('; '), i.qty, i.po, stockOf(i).total ?? '', ...WK.map(k => (stockOf(i).wh || {})[k] ?? ''), i.status, rcvOf(i), i.logs.length, last(i).date, done(i) ? '' : ageDays(i), i.next || '', i.urgent ? 'Ya' : '', last(i).note]);
+    csvDownload(`followup-sparepart-${today()}.csv`, H, rows);
+  }
+
+  const fit = () => { const w = $('.wrap'); w.style.maxHeight = Math.max(320, innerHeight - (w.getBoundingClientRect().top + scrollY) - 14) + 'px'; };
+
+  /* ===== EVENT (dipasang sekali) ===== */
+  function wire() {
+    wired = true;
+    $('#topbtns').innerHTML = (canWrite ? `<div class="grp"><button class="p" data-top="single">+ Single Item</button><button class="p" data-top="batch">+ Batch MSR</button></div>
+      <div class="grp"><button data-top="sync">Sync Stok Accurate</button><button data-top="req">Kelola Requester</button><button data-top="bk">Backup / Restore</button></div>` : '') +
+      `<div class="grp"><button data-top="csv">Export CSV</button><button data-top="pdf">Export PDF</button></div>`;
+    $('#flt').innerHTML = filterOpts('all');
+    $('#csvFile').onchange = onStockFile;
+    document.addEventListener('change', async e => {
+      const sel = e.target;
+      if (sel.tagName !== 'SELECT' || sel.value !== '__new__') return;
+      const n = (prompt('Nama requester baru:') || '').trim();
+      try { if (n) await addReq(n); } catch (err) { alert('Gagal: ' + err.message); }
+      const id = sel.dataset.id && +sel.dataset.id, it = items.find(i => i.id === id);
+      if (it) { if (n) { const r = [...it.reqs]; r[+sel.dataset.k] = n; applyReqs(it, r); try { await persistItem(it); } catch (err) { alert('Gagal: ' + err.message); } } render(); return; }
+      sel.innerHTML = reqOpts(n || reqs[0]); sel.value = n || reqs[0];
+    });
+    document.addEventListener('click', async e => {
+      const b = e.target.closest('[data-rmreq]'); if (!b) return;
+      const sel = b.parentElement.querySelector('select'), v = sel.value;
+      if (v === '__new__' || !confirm(`Hapus requester "${v}" dari daftar?`)) return;
+      try { await delReq(v); } catch (err) { alert('Gagal: ' + err.message); }
+      sel.innerHTML = reqOpts(); render();
+    });
+    $('.wrap thead').addEventListener('click', e => {
+      const h = e.target.closest('[data-sort]'); if (!h) return;
+      const k = h.dataset.sort;
+      sort = sort.k !== k ? { k, dir: 1 } : sort.dir === 1 ? { k, dir: -1 } : { k: '', dir: 1 };
+      render();
+    });
+    window.addEventListener('beforeprint', () => {
+      $('#pdate').textContent = 'Dicetak: ' + fmt(new Date());
+      if (!pdfReady && !$('#trk').hidden) {
+        const q = $('#q').value.toLowerCase(), f = $('#flt').value;
+        const list = items.filter(i => [i.part, i.msr, i.vendor, i.req, i.desc].join(' ').toLowerCase().includes(q) && matchStatus(i, f));
+        buildPrint(list, [q && `Pencarian “${$('#q').value}”`, f !== 'all' && `Status ${ST_LABEL[f]}`].filter(Boolean));
+      }
+    });
+    window.addEventListener('afterprint', () => { pdfReady = false; $('#printArea').innerHTML = ''; });
+    $('#tb').onchange = async e => {
+      const t = e.target, it = items.find(i => i.id === +t.dataset.id); if (!it) return;
+      try {
+        if (t.dataset.f === 'rn' && t.value !== '__new__') { const r = [...it.reqs]; r[+t.dataset.k] = t.value; applyReqs(it, r); await persistItem(it); render(); }
+        if (t.dataset.f === 'urg') {
+          it.urgent = t.checked;
+          if (t.checked && !done(it)) { const lim = addDays(last(it).date || today(), NEXT_DAYS_URGENT); if (!it.next || it.next > lim) it.next = lim; }
+          await persistItem(it); render();
+        }
+      } catch (err) { alert('Gagal menyimpan: ' + err.message); await reload(); }
+    };
+    window.addEventListener('resize', fit);
+    $('#stats').onclick = e => { const c = e.target.closest('[data-f]'); if (c) { $('#flt').value = c.dataset.f; render(); } };
+    $('#q').oninput = render; $('#flt').onchange = render;
+    $('#trk .bar').onclick = e => {
+      const t = e.target.dataset.top; if (!t) return;
+      ({ single: singleForm, req: reqForm, bk: backupForm, batch: batchForm, sync: syncForm, csv: exportCSV, pdf: pdfForm })[t]();
+    };
+    $('#tb').onclick = async e => {
+      const b = e.target.closest('[data-act]'); if (!b) return;
+      const id = +b.dataset.id, it = items.find(x => x.id === id);
+      try {
+        if (b.dataset.act === 'addreq') { const n = reqs.find(r => !it.reqs.includes(r)) || reqs[0] || '-'; applyReqs(it, [...it.reqs, n]); await persistItem(it); return render(); }
+        if (b.dataset.act === 'rmreq') {
+          if (it.reqs.length < 2) return alert('Minimal harus ada satu requester.');
+          applyReqs(it, it.reqs.filter((_, k) => k !== +b.dataset.k)); await persistItem(it); return render();
+        }
+        if (b.dataset.act === 'edit') editForm(id);
+        if (b.dataset.act === 'log') logForm(id);
+        if (b.dataset.act === 'hist') history(id);
+        if (b.dataset.act === 'del' && confirm('Hapus data ini beserta riwayat FU-nya? (Tercatat di jejak audit)')) { chk(await sb.from('followup_items').delete().eq('id', id)); items = items.filter(i => i.id !== id); render(); }
+      } catch (err) { alert('Gagal: ' + err.message); await reload(); }
+    };
+  }
+
+  return { async show() { if (!wired) wire(); $('#tb').innerHTML = '<tr><td colspan="9" class="empty">Memuat data…</td></tr>'; await reload(); } };
+}
+
+/* ===================== 2) STOK & AGING (tabel + sorting + status aging/penjualan) ===================== */
+const BK = [['b1','1-30 hari','#6cc08b'],['b2','31-60','#b5d86a'],['b3','61-90','#f0c24b'],['b4','91-120','#ee9a45'],['b5','>120 hari','#d9534f']];
+const STAT = ['Fast Moving','Medium Moving','Slow Moving','Dead Stock'];
+const STAT_COL = { 'Fast Moving':'#2f9e63', 'Medium Moving':'#f0b429', 'Slow Moving':'#e8590c', 'Dead Stock':'#c92a2a' };
+const STAT_CLS = { 'Fast Moving':'fu-ok', 'Medium Moving':'fu-part', 'Slow Moving':'fu-warn', 'Dead Stock':'fu-bad' };
+const normKode = s => String(s ?? '').trim().toUpperCase();   // kunci cocok persis seperti Excel (tanda strip tidak dihapus)
+let uploads = [], stockRows = [], salesMap = new Map(), salesMeta = null, flagMap = new Map(), auxLoaded = false;
+
+/* --- aturan status (sama dengan sheet Spareparts di Excel Anda) --- */
+function agingStatus(r){            // berdasarkan umur stok (bucket hari)
+  if (r._dead) return 'Dead Stock';
+  if ((r.b5||0) > 0) return 'Slow Moving';
+  if ((r.b4||0) > 0) return 'Medium Moving';
+  if ((r.b1||0) + (r.b2||0) + (r.b3||0) > 0) return 'Fast Moving';
+  return 'Slow Moving';
+}
+function saleStatus(r){             // berdasarkan hari sejak transaksi penjualan terakhir
+  if (r._dead) return 'Dead Stock';
+  if (!r._sale || !r._sale.last_date) { r._days = null; return 'Slow Moving'; }   // belum pernah terjual
+  const d = Math.round((Date.parse(String(r.as_of).slice(0,10)) - Date.parse(String(r._sale.last_date).slice(0,10))) / 864e5);
+  r._days = d; return d <= 90 ? 'Fast Moving' : d <= 120 ? 'Medium Moving' : 'Slow Moving';
+}
+function annotate(r){
+  r._k = normKode(r.kode); r._sale = salesMap.get(r._k) || null; r._dead = !!(flagMap.get(r._k) || {}).dead_stock;
+  r._ag = agingStatus(r); r._sl = saleStatus(r); r._last = r._sale ? r._sale.last_date : null;
+  r._umur = r.stok > 0 ? ((r.b1||0)*15 + (r.b2||0)*45 + (r.b3||0)*75 + (r.b4||0)*105 + (r.b5||0)*135) / r.stok : 0;
+}
+async function loadAux(force){
+  if (auxLoaded && !force) return;
+  const [sm, ss, fl] = await Promise.all([
+    sb.from('sales_meta').select('*').maybeSingle(),
+    fetchAll(() => sb.from('sales_summary').select('*').order('kode_norm')),
+    fetchAll(() => sb.from('part_flags').select('*').order('kode_norm'))]);
+  salesMeta = sm.data || null; salesMap = new Map(ss.map(r => [r.kode_norm, r])); flagMap = new Map(fl.map(r => [r.kode_norm, r])); auxLoaded = true;
+}
+async function loadUploads(){
+  const r = await sb.from('stock_uploads').select('*').order('as_of',{ascending:false});
+  if (r.error) throw r.error; uploads = r.data; return uploads;
+}
+// memuat baris stok untuk pilihan gudang ('*' = data terbaru tiap gudang) lalu memberi status
+async function loadStockSet(g, uploadId){
+  let ids;
+  if (g === '*'){ const seen = {}; ids = []; uploads.forEach(u => { if (myG.includes(u.gudang) && !seen[u.gudang]){ seen[u.gudang] = 1; ids.push(u.id); } }); }
+  else ids = [Number(uploadId || (uploads.find(u => u.gudang === g) || {}).id)];
+  const out = [];
+  for (const id of ids){ const nv = !!uploads.find(u => u.id === id)?.tanpa_nilai;
+    (await fetchAll(() => sb.from('stock_rows').select('*').eq('upload_id', id).order('id'))).forEach(r => { r._nv = nv; out.push(r); }); }
+  await loadAux(); out.forEach(annotate); return out;
+}
+
+/* --- tabel dengan sorting --- */
+let sortS = { k:'nilai_total', dir:-1 }, pageS = { size:100, n:0 };
+const cmpV = (a, b) => (typeof a === 'number' && typeof b === 'number') ? a - b : String(a ?? '').localeCompare(String(b ?? ''), 'id', { numeric:true, sensitivity:'base' });
+function colsFor(qty){
+  const c = [['gudang','Gdg','s',r=>r.gudang],['kode','Kode Barang','s',r=>r.kode],['nama','Nama Barang','s',r=>r.nama],['kategori','Kategori','s',r=>r.kategori],['stok','Stok','n',r=>r.stok]];
+  if (!qty) c.push(['nilai_satuan','Nilai Satuan','n',r=>r.nilai_satuan],['nilai_total','Nilai Total','n',r=>r.nilai_total]);
+  c.push(['last','Tgl Transaksi Terakhir','s',r=>r._last||''],
+         ['ag','Status Berdasarkan Aging','r',r=>STAT.indexOf(r._ag)],['sl','Status Berdasarkan Penjualan','r',r=>STAT.indexOf(r._sl)]);
+  return c;
+}
+const stBadge = s => `<span class="bd ${STAT_CLS[s]}">${s}</span>`;
+
+async function viewStok(){
+  $$('#mn').innerHTML = '<div class="meta">Memuat...</div>';
+  try { await loadUploads(); } catch(e){ return $$('#mn').innerHTML = '<div class="txbad">Gagal memuat: ' + escH(e.message) + '</div>'; }
+  const latest = {}; uploads.forEach(u => { if (!latest[u.gudang]) latest[u.gudang] = u; });
+  $$('#mn').innerHTML = `<div class="chips">${myG.map(g => `<div class="chip"><b>Gudang ${g}</b>${latest[g]?fmtD(latest[g].as_of):'<span class="wr">belum ada data</span>'}${GNOTE[g]?` <span class="meta">(${GNOTE[g]})</span>`:''}</div>`).join('')}</div>
+  <div class="tabbar"><select id="sg"><option value="*">Semua gudang (data terbaru)</option>${myG.filter(g=>latest[g]).map(g=>`<option value="${g}">Gudang ${g}</option>`).join('')}</select>
+  <select id="sd" class="hide"></select>
+  <input id="sq" placeholder="Cari kode / nama part..."><select id="sc"><option value="">Semua kategori</option></select>
+  <select id="fa"><option value="">Status Aging: semua</option>${STAT.map(s=>`<option>${s}</option>`).join('')}</select>
+  <select id="fs"><option value="">Status Penjualan: semua</option>${STAT.map(s=>`<option>${s}</option>`).join('')}</select>
+  <span class="sp"></span><button id="ex">Ekspor CSV</button></div>
+  <div id="kp"></div><div id="tbw"></div>`;
+  if (!uploads.length){ $$('#kp').innerHTML = `<div class="card">Belum ada data stok. ${canWrite?'Buka tab <b>Unggah Aging</b> untuk mengunggah file Umur Persediaan.':'Minta editor mengunggah data.'}</div>`; return; }
+  const re = () => { pageS.n = 0; renderStok(); };
+  $$('#sg').onchange = onGudang; $$('#sd').onchange = loadRows; $$('#sq').oninput = re; $$('#sc').onchange = re; $$('#fa').onchange = re; $$('#fs').onchange = re; $$('#ex').onclick = exportStok;
+  onGudang();
+}
+function onGudang(){
+  const g = $$('#sg').value, sd = $$('#sd');
+  if (g === '*'){ sd.classList.add('hide'); sd.innerHTML = ''; }
+  else { sd.classList.remove('hide'); sd.innerHTML = uploads.filter(u=>u.gudang===g).map(u=>`<option value="${u.id}">Per ${fmtD(u.as_of)}</option>`).join(''); }
+  loadRows();
+}
+async function loadRows(){
+  $$('#tbw').innerHTML = '<div class="meta">Memuat baris...</div>';
+  try { stockRows = await loadStockSet($$('#sg').value, $$('#sd').value); }
+  catch(e){ return $$('#tbw').innerHTML = '<div class="txbad">Gagal memuat: ' + escH(e.message) + '</div>'; }
+  const cats = [...new Set(stockRows.map(r => r.kategori).filter(Boolean))].sort();
+  $$('#sc').innerHTML = '<option value="">Semua kategori</option>' + cats.map(c => `<option>${escH(c)}</option>`).join('');
+  pageS.n = 0; renderStok();
+}
+function filteredStok(){
+  const q = $$('#sq').value.toLowerCase(), cat = $$('#sc').value, fa = $$('#fa').value, fs = $$('#fs').value;
+  return stockRows.filter(r => r.stok > 0 && (!cat || r.kategori === cat) && (!fa || r._ag === fa) && (!fs || r._sl === fs) && (!q || (r.kode + ' ' + (r.nama||'')).toLowerCase().includes(q)));
+}
+function renderStok(){
+  const rows = filteredStok(), qty = stockRows.length > 0 && stockRows.every(r => r._nv);
+  const m = r => qty ? (r.stok||0) : (r.nilai_total||0);                          // ukuran: nilai (Rp) atau unit
+  const fv = v => qty ? num(v) + ' unit' : rpS(v);
+  const tot = rows.reduce((a,r) => a + m(r), 0), old = rows.reduce((a,r) => a + (qty ? (r.b5||0) : (r.nilai_satuan||0) * (r.b5||0)), 0);
+  const sd = rows.filter(r => r._ag === 'Slow Moving' || r._ag === 'Dead Stock').reduce((a,r) => a + m(r), 0);
+  const buck = BK.map(b => rows.reduce((a,r) => a + (qty ? (r[b[0]]||0) : (r.nilai_satuan||0) * (r[b[0]]||0)), 0)), bsum = buck.reduce((a,b)=>a+b,0) || 1;
+  $$('#kp').innerHTML = `<div class="cards"><div class="card kpi"><span>${qty?'Total unit di stok':'Nilai persediaan part ber-stok'}</span><b>${fv(tot)}</b>${qty?'':'<span>acuan: Nilai Total di file Aging</span>'}</div>
+  <div class="card kpi"><span>Part ber-stok (SKU)</span><b>${num(rows.length)}</b></div>
+  <div class="card kpi"><span>${qty?'Unit':'Nilai'} umur &gt; 120 hari</span><b class="txbad">${fv(old)}</b><span>${(old/bsum*100).toFixed(1)}% dari ${qty?'unit':'nilai'} ber-umur</span></div>
+  <div class="card kpi"><span>${qty?'Unit':'Nilai'} Slow Moving + Dead Stock (aging)</span><b class="wr">${fv(sd)}</b><span>${tot ? (sd/tot*100).toFixed(1) : 0}% dari total</span></div></div>
+  <div class="card"><b>Sebaran ${qty?'unit':'nilai'} menurut umur persediaan</b>
+  <div class="stack">${buck.map((v,i)=>`<i style="width:${v/bsum*100}%;background:${BK[i][2]}" title="${BK[i][1]}: ${fv(v)}"></i>`).join('')}</div>
+  <div class="legend">${BK.map((b,i)=>`<span><b style="background:${b[2]}"></b>${b[1]}: ${fv(buck[i])}</span>`).join('')}</div></div>`;
+  const cols = colsFor(qty), col = cols.find(c => c[0] === sortS.k) || cols.find(c => c[0] === 'stok') || cols[0];
+  rows.sort((a, b) => cmpV(col[3](a), col[3](b)) * sortS.dir || cmpV(a.kode, b.kode));
+  const size = pageS.size || rows.length || 1, pages = Math.max(1, Math.ceil(rows.length / size)); if (pageS.n >= pages) pageS.n = pages - 1;
+  const vis = rows.slice(pageS.n * size, pageS.n * size + size);
+  const noSales = !salesMeta;
+  $$('#tbw').innerHTML = `<div class="tabbar" style="margin-bottom:6px"><span class="meta">Menampilkan ${num(vis.length)} dari ${num(rows.length)} part. Klik judul kolom untuk mengurutkan.${noSales?' <b class="wr">Data penjualan belum diunggah (tab Unggah Penjualan): status penjualan semua part tampil Slow Moving.</b>':''}</span><span class="sp"></span>
+    <label style="display:flex;gap:6px;align-items:center;margin:0">Baris per halaman <select id="ps" style="width:auto">${[50,100,200,500,0].map(n=>`<option value="${n}" ${pageS.size===n?'selected':''}>${n||'Semua'}</option>`).join('')}</select></label>
+    <button id="pp" ${pageS.n<=0?'disabled':''}>&larr;</button><span class="meta">Hal ${pageS.n+1} / ${pages}</span><button id="pn" ${pageS.n>=pages-1?'disabled':''}>&rarr;</button></div>
+    <div class="tw tw-scroll"><table class="st" style="min-width:${qty?900:1150}px"><thead><tr>${cols.map(c => `<th class="${c[2]==='n'?'n ':''}${['last','ag','sl'].includes(c[0])?'ctr ':''}sortable${c[0]===sortS.k?(sortS.dir>0?' asc':' desc'):''}" data-k="${c[0]}">${c[1]}</th>`).join('')}${canWrite?'<th class="ctr" title="Tandai manual Dead Stock (seperti kolom Dead Stock di Excel)">Dead Stock</th>':''}</tr></thead><tbody>
+    ${vis.map(r => `<tr><td>${r.gudang}</td><td><b>${escH(r.kode)}</b></td><td>${escH(r.nama)}</td><td>${escH(r.kategori)}</td><td class="n">${num(r.stok)}</td>${qty?'':`<td class="n">${num(r.nilai_satuan)}</td><td class="n">${num(r.nilai_total)}</td>`}<td class="ctr">${r._last ? fmtD(r._last) : (noSales ? '-' : '<span class="meta">Belum pernah terjual</span>')}${r._days != null ? `<small class="meta" style="display:block">${r._days} hari lalu</small>` : ''}</td><td class="ctr">${stBadge(r._ag)}</td><td class="ctr">${stBadge(r._sl)}</td>
+      ${canWrite?`<td class="ctr"><input type="checkbox" data-dead="${escH(r._k)}" ${r._dead?'checked':''} style="width:auto"></td>`:''}</tr>`).join('')}</tbody></table></div>`;
+  document.querySelectorAll('#tbw th.sortable').forEach(th => th.onclick = () => { const k = th.dataset.k; sortS = sortS.k === k ? { k, dir:-sortS.dir } : { k, dir:(cols.find(c=>c[0]===k)[2]==='s' ? 1 : -1) }; renderStok(); });
+  $$('#ps').onchange = e => { pageS.size = +e.target.value; pageS.n = 0; renderStok(); };
+  $$('#pp').onclick = () => { pageS.n--; renderStok(); }; $$('#pn').onclick = () => { pageS.n++; renderStok(); };
+  document.querySelectorAll('#tbw [data-dead]').forEach(cb => cb.onchange = async () => {
+    const k = cb.dataset.dead;
+    try {
+      if (cb.checked){ const r = await sb.from('part_flags').upsert({ kode_norm:k, dead_stock:true, updated_by:me.id, updated_at:new Date().toISOString() }).select(); if (r.error) throw r.error; flagMap.set(k, r.data[0]); }
+      else { const r = await sb.from('part_flags').delete().eq('kode_norm', k); if (r.error) throw r.error; flagMap.delete(k); }
+      stockRows.forEach(annotate); renderStok();
+    } catch(e){ alert('Gagal menyimpan tanda Dead Stock: ' + e.message); cb.checked = !cb.checked; }
+  });
+}
+function exportStok(){
+  const rows = filteredStok(), qty = stockRows.length > 0 && stockRows.every(r => r._nv);
+  csvDownload('stok-aging-' + dayKey(new Date()) + '.csv',
+    ['Gudang','Per Tanggal','Kode','Nama','Satuan','Kategori','Stok',...(qty?[]:['Nilai Satuan','Nilai Total']),'1-30','31-60','61-90','91-120','>120','Umur Stok (hari)','Tgl Transaksi Terakhir','Status Berdasarkan Aging','Status Berdasarkan Penjualan','Dead Stock (manual)'],
+    rows.map(r => [r.gudang,fmtD(r.as_of),r.kode,r.nama,r.satuan,r.kategori,r.stok,...(qty?[]:[r.nilai_satuan,r.nilai_total]),r.b1,r.b2,r.b3,r.b4,r.b5,Math.round(r._umur),r._last||'',r._ag,r._sl,r._dead?'Ya':'']));
+}
+
+
+/* ===================== 3) UNGGAH AGING ===================== */
+let parsed = null, lastFile = null;
+function viewUnggah(){
+  $$('#mn').innerHTML = `<div class="card"><h3 style="margin:0 0 4px">Unggah file Umur Persediaan (Aging)</h3>
+  <div class="meta">Ekspor langsung dari software akuntansi (.xlsx), tanpa digabung atau diedit. Satu file untuk satu gudang. Tanggal dan gudang dibaca otomatis dari file.</div>
+  <label style="display:flex;gap:8px;align-items:center;color:var(--ink);font-size:13px;margin:12px 0 0"><input type="checkbox" id="nv" style="width:auto"> <span><b>Jangan simpan nilai Rupiah</b> (hanya jumlah stok dan umur persediaan)</span></label>
+  <div class="drop" id="dz" style="margin-top:12px"><input type="file" id="fl" accept=".xlsx,.xls" style="display:none"><button class="p" id="pk">Pilih file Excel</button><div style="margin-top:8px">atau seret file ke sini</div></div>
+  <div id="pv"></div></div>`;
+  $$('#pk').onclick = () => $$('#fl').click(); $$('#fl').onchange = e => e.target.files[0] && readFile(e.target.files[0]);
+  $$('#nv').onchange = () => { if (lastFile) readFile(lastFile); };
+  const dz = $$('#dz'); dz.ondragover = e => { e.preventDefault(); }; dz.ondrop = e => { e.preventDefault(); if (e.dataTransfer.files[0]) readFile(e.dataTransfer.files[0]); };
+}
+const MON = {jan:1,feb:2,mar:3,apr:4,mei:5,may:5,jun:6,jul:7,agu:8,agt:8,aug:8,sep:9,okt:10,oct:10,nov:11,des:12,dec:12};
+function parseAging(wb){
+  const ws = wb.Sheets[wb.SheetNames[0]], rows = XLSX.utils.sheet_to_json(ws, {header:1, raw:true, defval:null});
+  const hi = rows.findIndex(r => r && String(r[0] ?? '').trim().toLowerCase() === 'kode barang');
+  if (hi < 0) throw new Error('Judul kolom "Kode Barang" tidak ditemukan. Pastikan ini file Umur Persediaan dari software akuntansi.');
+  const meta = rows.slice(0, hi).flat().filter(x => typeof x === 'string').join(' | ');
+  const dm = meta.match(/Per\s*Tgl\.?\s*(\d{1,2})\s+([A-Za-z]+)\s+(\d{4})/i);
+  if (!dm || !MON[dm[2].slice(0,3).toLowerCase()]) throw new Error('Tanggal "Per Tgl. ..." tidak terbaca di bagian atas file.');
+  const asOf = `${dm[3]}-${String(MON[dm[2].slice(0,3).toLowerCase()]).padStart(2,'0')}-${dm[1].padStart(2,'0')}`;
+  const head = rows[hi].map(h => String(h ?? '').replace(/\s+/g,' ').trim()), idx = n => head.findIndex(h => h.toLowerCase() === n.toLowerCase());
+  const c = { kode:idx('Kode Barang'), nama:idx('Nama Barang'), satuan:idx('Satuan'), kategori:idx('Nama Kategori Barang'), nsat:idx('Nilai Satuan'), ntot:idx('Nilai Total'),
+              b1:idx('1 - 30'), b2:idx('31 - 60'), b3:idx('61 - 90'), b4:idx('91 - 120'), b5:idx('> 120') };
+  const miss = Object.entries(c).filter(([k,v]) => v < 0).map(([k]) => k);
+  if (miss.length) throw new Error('Kolom tidak ditemukan: ' + miss.join(', ') + '. Format file berbeda dari contoh.');
+  const sc = head.map((h,i) => ({h,i})).filter(x => /^stok\b/i.test(x.h));
+  const gm = meta.match(/Gudang\s*:\s*\(\s*([A-Za-z0-9]+)\s*\)/i);
+  if (sc.length !== 1) throw new Error(`File memuat ${sc.length} kolom Stok (${sc.map(x=>x.h).join(', ')}). Saat ini aplikasi baru mendukung satu gudang per file. Kirim contoh file ini ke pengembang agar dapat disesuaikan.`);
+  const g = (head[sc[0].i].replace(/^stok\s*/i,'') || (gm && gm[1]) || '').toUpperCase();
+  const warnings = []; if (gm && gm[1].toUpperCase() !== g) warnings.push(`Gudang di judul file (${gm[1]}) berbeda dengan kolom stok (${g}). Dipakai: ${g}.`);
+  if (!ALL_G.includes(g)) throw new Error(`Gudang "${g}" belum terdaftar di aplikasi (terdaftar: ${ALL_G.join(', ')}).`);
+  const n = v => { const x = Number(v); return isFinite(x) ? x : 0; }, map = new Map(); let fileRows = 0;
+  for (const r of rows.slice(hi + 1)){
+    const kode = String(r[c.kode] ?? '').trim(); if (!kode) continue; fileRows++;
+    const o = { kode, nama:String(r[c.nama] ?? '').trim(), satuan:String(r[c.satuan] ?? '').trim(), kategori:String(r[c.kategori] ?? '').trim(),
+      nilai_satuan:n(r[c.nsat]), nilai_total:n(r[c.ntot]), stok:n(r[sc[0].i]), b1:n(r[c.b1]), b2:n(r[c.b2]), b3:n(r[c.b3]), b4:n(r[c.b4]), b5:n(r[c.b5]) };
+    if (!o.stok && !o.nilai_total) continue;
+    if (map.has(kode)){ const p = map.get(kode); ['nilai_total','stok','b1','b2','b3','b4','b5'].forEach(k => p[k] += o[k]); warnings.push('Kode ganda digabung: ' + kode); }
+    else map.set(kode, o);
+  }
+  const out = [...map.values()]; out.forEach(o => o.selisih = Math.round((o.nilai_total - o.nilai_satuan * o.stok) * 100) / 100);
+  return { gudang:g, asOf, fileRows, rows:out, warnings };
+}
+async function readFile(file){
+  const pv = $$('#pv'); pv.innerHTML = '<div class="meta" style="margin-top:12px">Membaca file...</div>'; parsed = null; lastFile = file;
+  try {
+    const p = parseAging(XLSX.read(await file.arrayBuffer(), {type:'array'})); p.filename = file.name; p.tanpa = $$('#nv').checked;
+    if (p.tanpa){ p.rows = p.rows.filter(r => r.stok !== 0); p.rows.forEach(r => { r.nilai_satuan = 0; r.nilai_total = 0; r.selisih = 0; }); }   // nilai Rupiah tidak ikut disimpan
+    parsed = p;
+    if (!myG.includes(p.gudang)) throw new Error(`Anda tidak punya hak mengunggah untuk gudang ${p.gudang}.`);
+    const prev = (await sb.from('stock_uploads').select('*').eq('gudang', p.gudang).lt('as_of', p.asOf).order('as_of',{ascending:false}).limit(1)).data?.[0];
+    p.same = (await sb.from('stock_uploads').select('*').eq('gudang', p.gudang).eq('as_of', p.asOf).limit(1)).data?.[0] || null;
+    const tv = p.rows.filter(r=>r.stok>0).reduce((a,r)=>a+r.nilai_total,0), ov = p.rows.filter(r=>r.stok===0).reduce((a,r)=>a+r.nilai_total,0), ts = p.rows.reduce((a,r)=>a+r.stok,0), nsel = 0, big = p.rows.filter(r => r.stok > 0 && r.b5 > 0).length;
+    p.tv = tv; p.ts = ts; p.nsel = 0; p.big = big; const comparable = prev && !prev.tanpa_nilai && !p.tanpa, d = comparable ? tv - prev.total_nilai : null;
+    pv.innerHTML = `<h4 style="margin:16px 0 8px">Pratinjau (belum disimpan)</h4><div class="cards"><div class="card kpi"><span>Gudang / Per tanggal</span><b>${p.gudang} &middot; ${fmtD(p.asOf)}</b></div>
+    <div class="card kpi"><span>Baris di file → disimpan</span><b>${num(p.fileRows)} → ${num(p.rows.length)}</b><span>${p.tanpa?'hanya part yang ber-stok':'hanya yang punya stok atau nilai'}</span></div>
+    <div class="card kpi"><span>Total stok ${p.tanpa?'':'/ Nilai part ber-stok'}</span><b>${num(ts)}</b><span>${p.tanpa?'nilai Rupiah <b>tidak disimpan</b>':rp(tv)+' &middot; nilai tanpa stok: '+rp(ov)}</span></div>
+    <div class="card kpi"><span>Part dengan stok umur &gt; 120 hari</span><b class="wr">${num(big)}</b><span>dari ${num(p.rows.filter(r=>r.stok>0).length)} part ber-stok</span></div></div>
+    ${prev ? `<div class="card">Unggahan sebelumnya (${fmtD(prev.as_of)}): ${num(prev.rows_saved)} part${comparable ? `; nilai berubah <b class="${d>=0?'wr':'ok'}">${d>=0?'+':''}${rp(d)}</b>` : ''}.</div>` : '<div class="card">Belum ada unggahan sebelumnya untuk gudang ini.</div>'}
+    ${p.same ? `<div class="card wr">Sudah ada data gudang ${p.gudang} untuk tanggal ini. Menyimpan akan <b>menggantikannya</b> (tercatat di audit).</div>` : ''}
+    ${p.warnings.length ? `<div class="card wr">${p.warnings.slice(0,5).map(esc).join('<br>')}</div>` : ''}
+    <div class="tw"><table><thead><tr><th>Kode</th><th>Nama</th><th>Kategori</th><th class="n">Stok</th>${p.tanpa?'':'<th class="n">Nilai Satuan</th><th class="n">Nilai Total</th>'}</tr></thead><tbody>
+    ${p.rows.filter(r=>r.stok>0).slice(0,8).map(r=>`<tr><td>${escH(r.kode)}</td><td>${escH(r.nama)}</td><td>${escH(r.kategori)}</td><td class="n">${num(r.stok)}</td>${p.tanpa?'':`<td class="n">${num(r.nilai_satuan)}</td><td class="n">${num(r.nilai_total)}</td>`}</tr>`).join('')}</tbody></table></div>
+    <div style="margin-top:14px"><button class="p" id="sv">Simpan ke database</button> <button id="cn">Batal</button></div><div class="prog hide" id="pg"><i></i></div><div id="ps" class="meta" style="margin-top:6px"></div>`;
+    $$('#cn').onclick = () => { lastFile = null; viewUnggah(); }; $$('#sv').onclick = saveAging;
+  } catch(e){ parsed = null; pv.innerHTML = `<div class="card txbad" style="margin-top:12px"><b>Tidak bisa diproses.</b><br>${escH(e.message)}</div>`; }
+}
+async function saveAging(){
+  const p = parsed; if (!p) return; $$('#sv').disabled = true; $$('#cn').disabled = true; $$('#pg').classList.remove('hide');
+  const bar = $$('#pg i'), st = $$('#ps'); let up = null;
+  try {
+    if (p.same){ st.textContent = 'Menghapus data tanggal yang sama...'; const d = await sb.from('stock_uploads').delete().eq('id', p.same.id).select(); if (d.error || !d.data.length) throw new Error(d.error ? d.error.message : 'tidak diizinkan menghapus data lama'); }
+    const r = await sb.from('stock_uploads').insert({ gudang:p.gudang, as_of:p.asOf, filename:p.filename, rows_file:p.fileRows, rows_saved:p.rows.length,
+      total_stok:p.ts, total_nilai:p.tanpa?0:p.tv, rows_selisih:0, tanpa_nilai:p.tanpa }).select().single();
+    if (r.error) throw new Error(r.error.message); up = r.data;
+    const CH = 500;
+    for (let i = 0; i < p.rows.length; i += CH){
+      const e = (await sb.from('stock_rows').insert(p.rows.slice(i, i + CH).map(x => ({ ...x, upload_id:up.id, gudang:p.gudang, as_of:p.asOf })))).error;
+      if (e) throw new Error(e.message);
+      const done = Math.min(i + CH, p.rows.length); bar.style.width = (done / p.rows.length * 100) + '%'; st.textContent = `Menyimpan ${num(done)} / ${num(p.rows.length)} baris...`;
+    }
+    st.innerHTML = '<span class="ok"><b>Selesai.</b></span> Data gudang ' + p.gudang + ' per ' + fmtD(p.asOf) + ' tersimpan. <a style="color:var(--pri);cursor:pointer" id="gs"><b>Lihat di Stok &amp; Aging</b></a>';
+    $$('#gs').onclick = () => go('stok'); $$('#sv').classList.add('hide'); $$('#cn').textContent = 'Unggah file lain'; $$('#cn').disabled = false; lastFile = null;
+  } catch(e){
+    if (up) { try { await sb.from('stock_uploads').delete().eq('id', up.id); } catch(_){} }
+    st.innerHTML = '<span class="txbad">Gagal menyimpan: ' + escH(e.message) + '. Data parsial sudah dibatalkan, silakan coba lagi.</span>'; $$('#sv').disabled = false; $$('#cn').disabled = false;
+  }
+}
+
+
+/* ===================== UNGGAH PENJUALAN (Rincian Pesanan Penjualan) ===================== */
+let salesParsed = null, lastSalesFile = null;
+async function viewSales(){
+  $$('#mn').innerHTML = '<div class="meta">Memuat...</div>';
+  try { await loadAux(true); } catch(e){ return $$('#mn').innerHTML = '<div class="txbad">Gagal memuat: ' + escH(e.message) + '</div>'; }
+  const cur = salesMeta ? `<div class="card ok" style="background:#eef8f1">Data penjualan saat ini: <b>${escH(salesMeta.file)}</b> &middot; disinkron ${fmtDT(salesMeta.synced_at)} &middot; ${num(salesMeta.parts)} part &middot; transaksi ${fmtD(salesMeta.date_min)} s/d ${fmtD(salesMeta.date_max)}</div>`
+    : '<div class="card wr">Belum ada data penjualan. Tanpa data ini, kolom <b>Status Berdasarkan Penjualan</b> menganggap semua part belum pernah terjual (Slow Moving).</div>';
+  $$('#mn').innerHTML = `<div class="card"><h3 style="margin:0 0 4px">Unggah laporan Rincian Pesanan Penjualan</h3>
+  <div class="meta">Ekspor langsung dari software akuntansi (.xlsx), sama seperti sheet &ldquo;Rincian Pesanan Penjualan&rdquo; di Excel Anda. Aplikasi hanya menyimpan <b>ringkasan per part</b> (tanggal transaksi terakhir, jumlah transaksi, qty per bulan), tanpa pelanggan dan tanpa harga. Setiap unggahan <b>menggantikan</b> data penjualan sebelumnya, jadi unggah laporan yang mencakup seluruh periode (mis. Jan 2025 sampai sekarang).</div>
+  <div style="margin-top:10px">${cur}</div>
+  <div class="drop" id="dz"><input type="file" id="sfl" accept=".xlsx,.xls" style="display:none"><button class="p" id="spk">Pilih file Excel penjualan</button><div style="margin-top:8px">atau seret file ke sini</div></div>
+  <div id="pv"></div></div>`;
+  $$('#spk').onclick = () => $$('#sfl').click(); $$('#sfl').onchange = e => e.target.files[0] && readSales(e.target.files[0]);
+  const dz = $$('#dz'); dz.ondragover = e => { e.preventDefault(); }; dz.ondrop = e => { e.preventDefault(); if (e.dataTransfer.files[0]) readSales(e.dataTransfer.files[0]); };
+}
+function toYMD(v){
+  if (v instanceof Date && !isNaN(v)){ const d = new Date(v.getTime() + 12*3600e3); return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`; }
+  if (typeof v === 'number' && v > 20000 && v < 80000){ const p = XLSX.SSF.parse_date_code(v); return p ? `${p.y}-${String(p.m).padStart(2,'0')}-${String(p.d).padStart(2,'0')}` : null; }
+  const s = String(v ?? '').trim(); let m;
+  if ((m = s.match(/^(\d{4})-(\d{2})-(\d{2})/))) return `${m[1]}-${m[2]}-${m[3]}`;
+  if ((m = s.match(/^(\d{1,2})[\/\-.](\d{1,2})[\/\-.](\d{4})/))) return `${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`;
+  return null;
+}
+function parseSales(wb){
+  const ws = wb.Sheets[wb.SheetNames[0]], rows = XLSX.utils.sheet_to_json(ws, {header:1, raw:true, defval:null});
+  const low = r => r.map(c => String(c ?? '').toLowerCase().replace(/\s+/g,' ').trim());
+  const hi = rows.findIndex(r => { const h = low(r); return h.includes('tanggal') && h.some(c => /^kode( #| barang)?$/.test(c)); });
+  if (hi < 0) throw new Error('Judul kolom "Tanggal" dan "Kode #" tidak ditemukan. Pastikan ini laporan Rincian Pesanan Penjualan dari software akuntansi.');
+  const h = low(rows[hi]), idx = re => h.findIndex(c => re.test(c));
+  const c = { tgl:idx(/^tanggal$/), kode:idx(/^kode( #| barang)?$/), nama:idx(/^nama barang$/), qty:idx(/^kuantitas$/), ship:idx(/pengiriman/) };
+  if (c.qty < 0) throw new Error('Kolom "Kuantitas" tidak ditemukan.');
+  const warnings = []; if (c.ship < 0) warnings.push('Kolom "Nomor # Pengiriman Barang Terakhir" tidak ada: semua baris dihitung sebagai transaksi.');
+  const map = new Map(); let fileRows = 0, used = 0, dmin = null, dmax = null;
+  for (const r of rows.slice(hi + 1)){
+    const kode = String(r[c.kode] ?? '').trim(); if (!kode) continue; fileRows++;
+    if (c.ship >= 0 && !String(r[c.ship] ?? '').trim()) continue;            // hanya yang sudah ada pengiriman (aturan di Excel Anda)
+    const d = toYMD(r[c.tgl]); if (!d) continue; used++;
+    const q = Number(String(r[c.qty] ?? '0').replace(',', '.')) || 0, k = normKode(kode);
+    let o = map.get(k); if (!o){ o = { kode_norm:k, kode, nama:c.nama >= 0 ? String(r[c.nama] ?? '').trim() : '', last_date:d, n_tx:0, qty_total:0, months:{} }; map.set(k, o); }
+    if (d > o.last_date) o.last_date = d; o.n_tx++; o.qty_total += q; const mo = d.slice(0,7); o.months[mo] = (o.months[mo] || 0) + q;
+    if (!dmin || d < dmin) dmin = d; if (!dmax || d > dmax) dmax = d;
+  }
+  if (!used) throw new Error('Tidak ada baris transaksi yang terbaca (tanggal atau kode kosong).');
+  return { fileRows, used, parts:[...map.values()], dmin, dmax, warnings };
+}
+async function readSales(file){
+  const pv = $$('#pv'); pv.innerHTML = '<div class="meta" style="margin-top:12px">Membaca file...</div>'; salesParsed = null; lastSalesFile = file;
+  try {
+    const p = parseSales(XLSX.read(await file.arrayBuffer(), { type:'array', cellDates:true })); p.filename = file.name; salesParsed = p;
+    const top = [...p.parts].sort((a,b) => b.last_date.localeCompare(a.last_date)).slice(0, 8);
+    pv.innerHTML = `<h4 style="margin:16px 0 8px">Pratinjau (belum disimpan)</h4><div class="cards"><div class="card kpi"><span>Baris di file → dihitung transaksi</span><b>${num(p.fileRows)} → ${num(p.used)}</b></div>
+    <div class="card kpi"><span>Part unik terjual</span><b>${num(p.parts.length)}</b></div>
+    <div class="card kpi"><span>Rentang tanggal transaksi</span><b style="font-size:16px">${fmtD(p.dmin)} s/d ${fmtD(p.dmax)}</b></div>
+    <div class="card kpi"><span>Tanggal transaksi terakhir</span><b style="font-size:18px">${fmtD(p.dmax)}</b></div></div>
+    ${salesMeta ? `<div class="card">Data penjualan sebelumnya: ${num(salesMeta.parts)} part, s/d ${fmtD(salesMeta.date_max)}. Menyimpan akan <b>menggantikannya</b>.</div>` : ''}
+    ${p.warnings.length ? `<div class="card wr">${p.warnings.map(escH).join('<br>')}</div>` : ''}
+    <div class="tw"><table><thead><tr><th>Kode</th><th>Nama Barang</th><th>Transaksi terakhir</th><th class="n">Jml transaksi</th><th class="n">Qty total</th></tr></thead><tbody>
+    ${top.map(r => `<tr><td>${escH(r.kode)}</td><td>${escH(r.nama)}</td><td>${fmtD(r.last_date)}</td><td class="n">${num(r.n_tx)}</td><td class="n">${num(r.qty_total)}</td></tr>`).join('')}</tbody></table></div>
+    <div style="margin-top:14px"><button class="p" id="sv">Simpan ke database</button> <button id="cn">Batal</button></div><div class="prog hide" id="pg"><i></i></div><div id="ps" class="meta" style="margin-top:6px"></div>`;
+    $$('#cn').onclick = viewSales; $$('#sv').onclick = saveSales;
+  } catch(e){ salesParsed = null; pv.innerHTML = `<div class="card txbad" style="margin-top:12px"><b>Tidak bisa diproses.</b><br>${escH(e.message)}</div>`; }
+}
+async function saveSales(){
+  const p = salesParsed; if (!p) return; $$('#sv').disabled = true; $$('#cn').disabled = true; $$('#pg').classList.remove('hide');
+  const bar = $$('#pg i'), st = $$('#ps');
+  try {
+    const CH = 1500;
+    for (let i = 0; i < p.parts.length; i += CH){
+      const r = await sb.rpc('replace_sales_summary', { p_reset: i === 0, p_rows: p.parts.slice(i, i + CH) }); if (r.error) throw new Error(r.error.message);
+      const done = Math.min(i + CH, p.parts.length); bar.style.width = (done / p.parts.length * 100) + '%'; st.textContent = `Menyimpan ${num(done)} / ${num(p.parts.length)} part...`;
+    }
+    const m = await sb.from('sales_meta').upsert({ id:1, file:p.filename, synced_at:new Date().toISOString(), rows_file:p.fileRows, rows_used:p.used, parts:p.parts.length, date_min:p.dmin, date_max:p.dmax, synced_by:me.id });
+    if (m.error) throw new Error(m.error.message);
+    auxLoaded = false;
+    st.innerHTML = '<span class="ok"><b>Selesai.</b></span> Data penjualan diperbarui (' + num(p.parts.length) + ' part). <a style="color:var(--pri);cursor:pointer" id="gs"><b>Lihat di Stok &amp; Aging</b></a>';
+    $$('#gs').onclick = () => go('stok'); $$('#sv').classList.add('hide'); $$('#cn').textContent = 'Unggah file lain'; $$('#cn').disabled = false;
+  } catch(e){ st.innerHTML = '<span class="txbad">Gagal menyimpan: ' + escH(e.message) + '. Coba lagi.</span>'; $$('#sv').disabled = false; $$('#cn').disabled = false; }
+}
+
+/* ===================== DASHBOARD (untuk presentasi ke manajemen) ===================== */
+let dashCharts = [];
+async function viewDashboard(){
+  $$('#mn').innerHTML = '<div class="meta">Memuat...</div>';
+  try { await loadUploads(); } catch(e){ return $$('#mn').innerHTML = '<div class="txbad">Gagal memuat: ' + escH(e.message) + '</div>'; }
+  if (!uploads.length) return $$('#mn').innerHTML = `<div class="card">Belum ada data stok. ${canWrite?'Unggah file Umur Persediaan di tab <b>Unggah Aging</b>.':''}</div>`;
+  const latest = {}; uploads.forEach(u => { if (!latest[u.gudang]) latest[u.gudang] = u; });
+  $$('#mn').innerHTML = `<div class="tabbar"><select id="dg"><option value="*">Semua gudang (data terbaru)</option>${myG.filter(g=>latest[g]).map(g=>`<option value="${g}">Gudang ${g}</option>`).join('')}</select>
+    <select id="dd" class="hide"></select><span class="sp"></span><button class="p" id="dp">Cetak / Simpan PDF</button></div><div id="dash"></div>`;
+  const loadIt = async () => { $$('#dash').innerHTML = '<div class="meta">Memuat data...</div>';
+    try { stockRows = await loadStockSet($$('#dg').value, $$('#dd').value); } catch(e){ return $$('#dash').innerHTML = '<div class="txbad">Gagal memuat: ' + escH(e.message) + '</div>'; }
+    renderDash(); };
+  $$('#dg').onchange = () => { const g = $$('#dg').value, sd = $$('#dd');
+    if (g === '*'){ sd.classList.add('hide'); sd.innerHTML = ''; } else { sd.classList.remove('hide'); sd.innerHTML = uploads.filter(u=>u.gudang===g).map(u=>`<option value="${u.id}">Per ${fmtD(u.as_of)}</option>`).join(''); }
+    loadIt(); };
+  $$('#dd').onchange = loadIt;
+  $$('#dp').onclick = () => { document.body.classList.add('pd'); setTimeout(() => window.print(), 250); };
+  loadIt();
+}
+window.addEventListener('afterprint', () => document.body.classList.remove('pd'));
+
+function renderDash(){
+  dashCharts.forEach(c => c.destroy()); dashCharts = [];
+  const rows = stockRows.filter(r => r.stok > 0), qty = rows.length > 0 && rows.every(r => r._nv);
+  const m = r => qty ? (r.stok||0) : (r.nilai_total||0), fv = v => qty ? num(v) + ' unit' : rpS(v), unitLbl = qty ? 'Unit' : 'Nilai (Rp)';
+  const gSel = $$('#dg').value, gset = [...new Set(rows.map(r => r.gudang))].sort();
+  const dates = [...new Set(rows.map(r => r.as_of))].sort();
+  const sub = `${gSel==='*' ? 'Semua gudang (' + gset.join(', ') + ')' : 'Gudang ' + gSel} &middot; data per ${dates.map(fmtD).join(', ')}`;
+  const total = rows.reduce((a,r) => a + m(r), 0) || 1, units = rows.reduce((a,r) => a + r.stok, 0);
+  const by = (key, list = rows) => { const o = Object.fromEntries(STAT.map(s => [s, { n:0, v:0 }])); list.forEach(r => { o[r[key]].n++; o[r[key]].v += m(r); }); return o; };
+  const A = by('_ag'), S = by('_sl'), hasSales = !!salesMeta;
+  const old = rows.reduce((a,r) => a + (qty ? (r.b5||0) : (r.nilai_satuan||0) * (r.b5||0)), 0);
+  const sd = A['Slow Moving'].v + A['Dead Stock'].v, never = rows.filter(r => !r._last), neverV = never.reduce((a,r) => a + m(r), 0);
+  const kpi = (l, v, s, cls='') => `<div class="card kpi"><span>${l}</span><b class="${cls}">${v}</b>${s?`<span>${s}</span>`:''}</div>`;
+  const stTable = (o, ttl) => `<table class="mini"><thead><tr><th>${ttl}</th><th class="n">SKU</th><th class="n">${unitLbl}</th><th class="n">%</th></tr></thead><tbody>${STAT.map(s => `<tr><td><i class="dot" style="background:${STAT_COL[s]}"></i>${s}</td><td class="n">${num(o[s].n)}</td><td class="n">${qty?num(o[s].v):rpS(o[s].v)}</td><td class="n">${(o[s].v/total*100).toFixed(1)}%</td></tr>`).join('')}</tbody></table>`;
+  // kategori top 10
+  const cat = {}; rows.forEach(r => { const k = r.kategori || '(tanpa kategori)'; cat[k] = cat[k] || { tot:0, s:Object.fromEntries(STAT.map(x=>[x,0])) }; cat[k].tot += m(r); cat[k].s[r._ag] += m(r); });
+  const topCat = Object.entries(cat).sort((a,b) => b[1].tot - a[1].tot).slice(0, 10);
+  const buck = BK.map(b => rows.reduce((a,r) => a + (qty ? (r[b[0]]||0) : (r.nilai_satuan||0) * (r[b[0]]||0)), 0));
+  // matriks
+  const mx = {}; STAT.forEach(a => { mx[a] = {}; STAT.forEach(s => mx[a][s] = { n:0, v:0 }); }); rows.forEach(r => { const c = mx[r._ag][r._sl]; c.n++; c.v += m(r); });
+  const top10 = rows.filter(r => r._ag === 'Slow Moving' || r._ag === 'Dead Stock').sort((a,b) => m(b) - m(a)).slice(0, 10);
+  const ins = [
+    `<b>${(old/ (rows.reduce((a,r)=>a+BK.reduce((x,b)=>x+(qty?(r[b[0]]||0):(r.nilai_satuan||0)*(r[b[0]]||0)),0),0)||1)*100).toFixed(0)}%</b> ${qty?'unit':'nilai'} persediaan berumur lebih dari 120 hari (${fv(old)}).`,
+    `Status aging Slow Moving + Dead Stock: <b>${fv(sd)}</b> (${(sd/total*100).toFixed(0)}% dari total), <b>${num(A['Slow Moving'].n + A['Dead Stock'].n)}</b> SKU.`,
+    hasSales ? `<b>${num(never.length)}</b> SKU (${fv(neverV)}, ${(neverV/total*100).toFixed(0)}%) <b>belum pernah terjual</b> pada data penjualan s/d ${fmtD(salesMeta.date_max)}.` : `Data penjualan belum diunggah, sehingga status penjualan belum bermakna (tab Unggah Penjualan).`,
+    topCat[0] ? `Kategori terbesar: <b>${escH(topCat[0][0])}</b> (${fv(topCat[0][1].tot)}, ${(topCat[0][1].tot/total*100).toFixed(0)}%).` : ''].filter(Boolean);
+  $$('#dash').innerHTML = `<div class="dtitle"><h2 style="margin:0">Dashboard Persediaan Sparepart</h2><div class="meta">${sub}${qty?' &middot; <b>tanpa nilai Rupiah (berbasis unit)</b>':''}</div></div>
+  <div class="cards">${kpi(qty?'Total unit di stok':'Nilai persediaan', fv(qty?units:total), qty?'':'acuan: Nilai Total file Aging')}${kpi('Part ber-stok (SKU)', num(rows.length), qty?'':num(units)+' unit')}${kpi((qty?'Unit':'Nilai')+' umur &gt; 120 hari', fv(old), (old/(buck.reduce((a,b)=>a+b,0)||1)*100).toFixed(1)+'% dari ber-umur', 'txbad')}${kpi('Slow + Dead Stock (aging)', fv(sd), (sd/total*100).toFixed(1)+'% dari total', 'wr')}</div>
+  <div class="card"><b>Ringkasan</b><ul class="ins">${ins.map(i=>`<li>${i}</li>`).join('')}</ul></div>
+  <div class="dgrid">
+    <div class="card"><b>Status berdasarkan Aging</b><div class="chbox"><canvas id="c1"></canvas></div>${stTable(A,'Status')}</div>
+    <div class="card"><b>Status berdasarkan Penjualan</b>${hasSales ? `<div class="chbox"><canvas id="c2"></canvas></div>${stTable(S,'Status')}` : '<div class="meta" style="padding:30px 0">Data penjualan belum diunggah. Unggah laporan Rincian Pesanan Penjualan agar status ini terisi.</div>'}</div>
+    <div class="card"><b>Sebaran ${qty?'unit':'nilai'} menurut umur persediaan</b><div class="chbox"><canvas id="c3"></canvas></div></div>
+    <div class="card"><b>10 kategori terbesar (${qty?'unit':'nilai'}), dipecah menurut status aging</b><div class="chbox"><canvas id="c4"></canvas></div></div>
+    ${gset.length > 1 ? `<div class="card" style="grid-column:1/-1"><b>${qty?'Unit':'Nilai'} per gudang menurut status aging</b><div class="chbox" style="height:230px"><canvas id="c5"></canvas></div></div>` : ''}
+  </div>
+  <div class="dgrid">
+    <div class="card"><b>Matriks status: Aging (baris) &times; Penjualan (kolom)</b><div class="meta" style="margin:2px 0 6px">Jumlah SKU dan ${qty?'unit':'nilai'}. Sel merah di kanan bawah (Slow menurut aging <i>dan</i> penjualan) adalah kandidat utama untuk ditinjau.</div>
+      <table class="mini"><thead><tr><th></th>${STAT.map(s=>`<th class="n">${s}</th>`).join('')}</tr></thead><tbody>${STAT.map(a => `<tr><td><i class="dot" style="background:${STAT_COL[a]}"></i>${a}</td>${STAT.map(s => `<td class="n ${(a==='Slow Moving'||a==='Dead Stock')&&(s==='Slow Moving'||s==='Dead Stock')?'hot':''}">${num(mx[a][s].n)}<small class="meta" style="display:block">${qty?num(mx[a][s].v):rpS(mx[a][s].v)}</small></td>`).join('')}</tr>`).join('')}</tbody></table></div>
+    <div class="card"><b>10 part Slow / Dead Stock (aging) ${qty?'dengan unit':'dengan nilai'} terbesar</b>
+      <table class="mini"><thead><tr><th>Kode</th><th>Nama</th><th class="n">${qty?'Stok':'Nilai'}</th><th>Penjualan</th></tr></thead><tbody>${top10.map(r => `<tr><td><b>${escH(r.kode)}</b></td><td>${escH(r.nama)}</td><td class="n">${qty?num(r.stok):rpS(r.nilai_total)}</td><td>${stBadge(r._sl)}</td></tr>`).join('') || '<tr><td colspan="4" class="meta">Tidak ada.</td></tr>'}</tbody></table></div>
+  </div>
+  <div class="meta" style="margin-top:6px">Aturan status: <b>Aging</b> = Slow bila ada stok umur &gt;120 hari, Medium bila ada stok 91&ndash;120 hari, selain itu Fast; Dead Stock = ditandai manual. <b>Penjualan</b> = Fast bila transaksi terakhir ≤ 90 hari, Medium ≤ 120 hari, Slow bila lebih lama atau belum pernah terjual (dihitung terhadap tanggal data stok).</div>`;
+  if (typeof Chart === 'undefined'){ $$('#dash').insertAdjacentHTML('afterbegin', '<div class="card wr">Pustaka grafik tidak termuat (cek folder lib/chart.umd.min.js di GitHub).</div>'); return; }
+  Chart.defaults.font.family = 'Segoe UI, system-ui, sans-serif'; Chart.defaults.animation = false;
+  const fmtTip = c => ` ${c.label || c.dataset.label}: ${qty ? num(c.parsed.y ?? c.parsed.x ?? c.parsed) + ' unit' : rpS(c.parsed.y ?? c.parsed.x ?? c.parsed)}`;
+  const base = { responsive:true, maintainAspectRatio:false, plugins:{ legend:{ position:'bottom', labels:{ boxWidth:12 } }, tooltip:{ callbacks:{ label:fmtTip } } } };
+  const money = v => qty ? num(v) : (Math.abs(v) >= 1e9 ? (v/1e9).toFixed(1) + ' M' : Math.abs(v) >= 1e6 ? (v/1e6).toFixed(0) + ' jt' : num(v));
+  const add = (id, cfg) => { const el = document.getElementById(id); if (el) dashCharts.push(new Chart(el, cfg)); };
+  add('c1', { type:'doughnut', data:{ labels:STAT, datasets:[{ data:STAT.map(s=>A[s].v), backgroundColor:STAT.map(s=>STAT_COL[s]) }] }, options:{ ...base, cutout:'58%' } });
+  if (hasSales) add('c2', { type:'doughnut', data:{ labels:STAT, datasets:[{ data:STAT.map(s=>S[s].v), backgroundColor:STAT.map(s=>STAT_COL[s]) }] }, options:{ ...base, cutout:'58%' } });
+  add('c3', { type:'bar', data:{ labels:BK.map(b=>b[1]), datasets:[{ label:unitLbl, data:buck, backgroundColor:BK.map(b=>b[2]) }] }, options:{ ...base, plugins:{ ...base.plugins, legend:{ display:false } }, scales:{ y:{ ticks:{ callback:money } } } } });
+  add('c4', { type:'bar', data:{ labels:topCat.map(c=>c[0].length>26?c[0].slice(0,25)+'…':c[0]), datasets:STAT.map(s=>({ label:s, data:topCat.map(c=>c[1].s[s]), backgroundColor:STAT_COL[s] })) }, options:{ ...base, indexAxis:'y', scales:{ x:{ stacked:true, ticks:{ callback:money } }, y:{ stacked:true } } } });
+  if (gset.length > 1) add('c5', { type:'bar', data:{ labels:gset.map(g=>'Gudang '+g), datasets:STAT.map(s=>({ label:s, data:gset.map(g=>rows.filter(r=>r.gudang===g&&r._ag===s).reduce((a,r)=>a+m(r),0)), backgroundColor:STAT_COL[s] })) }, options:{ ...base, scales:{ x:{ stacked:true }, y:{ stacked:true, ticks:{ callback:money } } } } });
+}
+
+/* ===================== 4) PENGGUNA (admin) ===================== */
+async function viewUsers(){
+  const r = await sb.from('profiles').select('*').order('full_name'); if (r.error) return $$('#mn').innerHTML = '<div class="txbad">Gagal memuat: ' + escH(r.error.message) + '</div>';
+  $$('#mn').innerHTML = `<div class="card"><b>Menambah akun baru</b><div class="meta" style="margin-top:4px">Akun dibuat di dashboard Supabase: <b>Authentication &rarr; Users &rarr; Add user &rarr; Create new user</b> (centang Auto Confirm User). Akun baru otomatis muncul di tabel di bawah dengan peran <i>viewer</i> tanpa gudang. Atur nama tampilan, peran, dan gudangnya di sini. Ganti password / hapus akun lewat dashboard tersebut.</div></div>
+  <div class="tw"><table style="min-width:900px"><thead><tr><th>Nama tampilan</th><th>Email</th><th>Peran</th><th>Gudang</th><th></th></tr></thead><tbody>${r.data.map(u=>`<tr data-id="${u.id}"><td><input class="nm" value="${escH(u.full_name)}" style="min-width:170px"></td><td>${escH(u.email)}</td>
+  <td><select class="r" style="width:auto">${['viewer','editor','admin'].map(x=>`<option ${u.role===x?'selected':''}>${x}</option>`).join('')}</select></td>
+  <td>${ALL_G.map(g=>`<label style="display:inline-flex;gap:3px;margin:0 8px 0 0;font-weight:400"><input type="checkbox" class="g" value="${g}" style="width:auto;margin:0" ${(u.gudang||[]).includes(g)?'checked':''}>${g}</label>`).join('')}</td>
+  <td><button class="sv p">Simpan</button></td></tr>`).join('')}</tbody></table></div>
+  <div class="meta" style="margin-top:8px">Admin selalu bisa mengakses semua gudang. Perubahan peran dan gudang berlaku setelah pengguna masuk ulang. Gudang C (dikelola produksi): centang hanya C pada akun tim produksi.</div>`;
+  document.querySelectorAll('tbody tr[data-id]').forEach(tr => tr.querySelector('.sv').onclick = async () => {
+    const { data, error } = await sb.from('profiles').update({ full_name:tr.querySelector('.nm').value.trim() || null, role:tr.querySelector('.r').value, gudang:[...tr.querySelectorAll('.g:checked')].map(x=>x.value) }).eq('id', tr.dataset.id).select();
+    alert(error ? 'Gagal: ' + error.message : !data.length ? 'Tidak diizinkan.' : 'Tersimpan.');
+  });
+}
+
+/* ===================== 5) CADANGAN DATA (admin) ===================== */
+const BK_TABLES = [['followup_items','Item tracker','id'],['followup_logs','Catatan follow-up','id'],['requesters','Daftar requester','name'],['stock_qty','Database stok Accurate','kode_norm'],['stock_uploads','Riwayat unggahan Aging','id'],['sales_summary','Ringkasan penjualan per part','kode_norm'],['part_flags','Tanda Dead Stock manual','kode_norm'],['stock_rows','Baris Aging (semua gudang)','id'],['profiles','Pengguna (peran &amp; gudang)','id'],['audit_log','Jejak audit','id']];
+function viewBackup(){
+  $$('#mn').innerHTML = `<div class="card"><h3 style="margin:0 0 4px">Cadangan Data</h3><div class="meta">Unduh data sebagai file CSV (bisa dibuka di Excel). Lakukan <b>mingguan</b> dan simpan di folder bertanggal / drive perusahaan. File ini juga bahan untuk memindahkan data jika suatu saat pindah hosting. Untuk cadangan tracker yang bisa dipulihkan (format tracker lama), gunakan tombol <b>Backup / Restore</b> di halaman Follow-up Tracker.</div>
+  <div style="margin-top:12px;display:grid;gap:8px">${BK_TABLES.map(t=>`<div style="display:flex;gap:10px;align-items:center"><button class="bk" data-t="${t[0]}" data-o="${t[2]}">Unduh</button><span><b>${t[0]}</b> &middot; ${t[1]}</span><span class="meta" id="bk_${t[0]}"></span></div>`).join('')}</div></div>`;
+  document.querySelectorAll('.bk').forEach(b => b.onclick = async () => {
+    const t = b.dataset.t, st = $$('#bk_' + t); st.textContent = 'mengunduh...';
+    try { const rows = await fetchAll(() => sb.from(t).select('*').order(b.dataset.o));
+      const cols = rows.length ? Object.keys(rows[0]) : ['(kosong)'];
+      csvDownload(`stp-${t}-${dayKey(new Date())}.csv`, cols, rows.map(r => cols.map(c => typeof r[c] === 'object' && r[c] !== null ? JSON.stringify(r[c]) : r[c])));
+      st.textContent = num(rows.length) + ' baris'; } catch(e){ st.textContent = 'gagal: ' + e.message; }
+  });
+}
+init();
+
+</script>
+</body>
+</html>
