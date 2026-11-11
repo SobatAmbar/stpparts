@@ -1156,8 +1156,8 @@ function renderStok(){
   const tot = rows.reduce((a,r) => a + m(r), 0), old = rows.reduce((a,r) => a + (qty ? (r.b5||0) : (r.nilai_satuan||0) * (r.b5||0)), 0);
   const sd = rows.filter(r => r._ag === 'Slow Moving' || r._ag === 'Dead Stock').reduce((a,r) => a + m(r), 0);
   const buck = BK.map(b => rows.reduce((a,r) => a + (qty ? (r[b[0]]||0) : (r.nilai_satuan||0) * (r[b[0]]||0)), 0)), bsum = buck.reduce((a,b)=>a+b,0) || 1;
-  $$('#kp').innerHTML = `<div class="cards"><div class="card kpi"><span>${qty?'Total unit di stok':'Nilai persediaan part ber-stok'}</span><b>${fv(tot)}</b>${qty?'':'<span>acuan: Nilai Total di file Aging</span>'}</div>
-  <div class="card kpi"><span>Part ber-stok (SKU)</span><b>${num(rows.length)}</b></div>
+  $$('#kp').innerHTML = `<div class="cards"><div class="card kpi"><span>${qty?'Total unit di stok':'Nilai persediaan part yang memiliki stok'}</span><b>${fv(tot)}</b>${qty?'':'<span>acuan: Nilai Total di file Aging</span>'}</div>
+  <div class="card kpi"><span>Part yang memiliki stok (item)</span><b>${num(rows.length)}</b></div>
   <div class="card kpi"><span>${qty?'Unit':'Nilai'} umur &gt; 120 hari</span><b class="txbad">${fv(old)}</b><span>${(old/bsum*100).toFixed(1)}% dari ${qty?'unit':'nilai'} ber-umur</span></div>
   <div class="card kpi"><span>${qty?'Unit':'Nilai'} Slow Moving + Dead Stock (aging)</span><b class="wr">${fv(sd)}</b><span>${tot ? (sd/tot*100).toFixed(1) : 0}% dari total</span></div></div>
   <div class="card"><b>Sebaran ${qty?'unit':'nilai'} menurut umur persediaan</b>
@@ -1250,9 +1250,9 @@ async function readFile(file){
     const tv = p.rows.filter(r=>r.stok>0).reduce((a,r)=>a+r.nilai_total,0), ov = p.rows.filter(r=>r.stok===0).reduce((a,r)=>a+r.nilai_total,0), ts = p.rows.reduce((a,r)=>a+r.stok,0), nsel = 0, big = p.rows.filter(r => r.stok > 0 && r.b5 > 0).length;
     p.tv = tv; p.ts = ts; p.nsel = 0; p.big = big; const comparable = prev && !prev.tanpa_nilai && !p.tanpa, d = comparable ? tv - prev.total_nilai : null;
     pv.innerHTML = `<h4 style="margin:16px 0 8px">Pratinjau (belum disimpan)</h4><div class="cards"><div class="card kpi"><span>Gudang / Per tanggal</span><b>${p.gudang} &middot; ${fmtD(p.asOf)}</b></div>
-    <div class="card kpi"><span>Baris di file → disimpan</span><b>${num(p.fileRows)} → ${num(p.rows.length)}</b><span>${p.tanpa?'hanya part yang ber-stok':'hanya yang punya stok atau nilai'}</span></div>
-    <div class="card kpi"><span>Total stok ${p.tanpa?'':'/ Nilai part ber-stok'}</span><b>${num(ts)}</b><span>${p.tanpa?'nilai Rupiah <b>tidak disimpan</b>':rp(tv)+' &middot; nilai tanpa stok: '+rp(ov)}</span></div>
-    <div class="card kpi"><span>Part dengan stok umur &gt; 120 hari</span><b class="wr">${num(big)}</b><span>dari ${num(p.rows.filter(r=>r.stok>0).length)} part ber-stok</span></div></div>
+    <div class="card kpi"><span>Baris di file → disimpan</span><b>${num(p.fileRows)} → ${num(p.rows.length)}</b><span>${p.tanpa?'hanya part yang memiliki stok':'hanya yang punya stok atau nilai'}</span></div>
+    <div class="card kpi"><span>Total stok ${p.tanpa?'':'/ Nilai part yang memiliki stok'}</span><b>${num(ts)}</b><span>${p.tanpa?'nilai Rupiah <b>tidak disimpan</b>':rp(tv)+' &middot; nilai tanpa stok: '+rp(ov)}</span></div>
+    <div class="card kpi"><span>Part dengan stok umur &gt; 120 hari</span><b class="wr">${num(big)}</b><span>dari ${num(p.rows.filter(r=>r.stok>0).length)} part yang memiliki stok</span></div></div>
     ${prev ? `<div class="card">Unggahan sebelumnya (${fmtD(prev.as_of)}): ${num(prev.rows_saved)} part${comparable ? `; nilai berubah <b class="${d>=0?'wr':'ok'}">${d>=0?'+':''}${rp(d)}</b>` : ''}.</div>` : '<div class="card">Belum ada unggahan sebelumnya untuk gudang ini.</div>'}
     ${p.same ? `<div class="card wr">Sudah ada data gudang ${p.gudang} untuk tanggal ini. Menyimpan akan <b>menggantikannya</b> (tercatat di audit).</div>` : ''}
     ${p.warnings.length ? `<div class="card wr">${p.warnings.slice(0,5).map(esc).join('<br>')}</div>` : ''}
@@ -1412,7 +1412,7 @@ function renderDash(){
     hasSales ? `<b>${num(never.length)}</b> SKU (${fv(neverV)}, ${(neverV/total*100).toFixed(0)}%) <b>belum pernah terjual</b> pada data penjualan s/d ${fmtD(salesMeta.date_max)}.` : `Data penjualan belum diunggah, sehingga status penjualan belum bermakna (tab Unggah Penjualan).`,
     topCat[0] ? `Kategori terbesar: <b>${escH(topCat[0][0])}</b> (${fv(topCat[0][1].tot)}, ${(topCat[0][1].tot/total*100).toFixed(0)}%).` : ''].filter(Boolean);
   $$('#dash').innerHTML = `<div class="dtitle"><h2 style="margin:0">Dashboard Persediaan Sparepart</h2><div class="meta">${sub}${qty?' &middot; <b>tanpa nilai Rupiah (berbasis unit)</b>':''}</div></div>
-  <div class="cards">${kpi(qty?'Total unit di stok':'Nilai persediaan', fv(qty?units:total), qty?'':'acuan: Nilai Total file Aging')}${kpi('Part ber-stok (SKU)', num(rows.length), qty?'':num(units)+' unit')}${kpi((qty?'Unit':'Nilai')+' umur &gt; 120 hari', fv(old), (old/(buck.reduce((a,b)=>a+b,0)||1)*100).toFixed(1)+'% dari ber-umur', 'txbad')}${kpi('Slow + Dead Stock (aging)', fv(sd), (sd/total*100).toFixed(1)+'% dari total', 'wr')}</div>
+  <div class="cards">${kpi(qty?'Total unit di stok':'Nilai persediaan', fv(qty?units:total), qty?'':'acuan: Nilai Total file Aging')}${kpi('Part yang memiliki stok (item)', num(rows.length), qty?'':num(units)+' unit')}${kpi((qty?'Unit':'Nilai')+' umur &gt; 120 hari', fv(old), (old/(buck.reduce((a,b)=>a+b,0)||1)*100).toFixed(1)+'% dari ber-umur', 'txbad')}${kpi('Slow + Dead Stock (aging)', fv(sd), (sd/total*100).toFixed(1)+'% dari total', 'wr')}</div>
   <div class="card"><b>Ringkasan</b><ul class="ins">${ins.map(i=>`<li>${i}</li>`).join('')}</ul></div>
   <div class="dgrid">
     <div class="card"><b>Status berdasarkan Aging</b><div class="chbox"><canvas id="c1"></canvas></div>${stTable(A,'Status')}</div>
