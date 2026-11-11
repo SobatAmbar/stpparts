@@ -1398,7 +1398,7 @@ function renderDash(){
   const old = rows.reduce((a,r) => a + (qty ? (r.b5||0) : (r.nilai_satuan||0) * (r.b5||0)), 0);
   const sd = A['Slow Moving'].v + A['Dead Stock'].v, never = rows.filter(r => !r._last), neverV = never.reduce((a,r) => a + m(r), 0);
   const kpi = (l, v, s, cls='') => `<div class="card kpi"><span>${l}</span><b class="${cls}">${v}</b>${s?`<span>${s}</span>`:''}</div>`;
-  const stTable = (o, ttl) => `<table class="mini"><thead><tr><th>${ttl}</th><th class="n">SKU</th><th class="n">${unitLbl}</th><th class="n">%</th></tr></thead><tbody>${STAT.map(s => `<tr><td><i class="dot" style="background:${STAT_COL[s]}"></i>${s}</td><td class="n">${num(o[s].n)}</td><td class="n">${qty?num(o[s].v):rpS(o[s].v)}</td><td class="n">${(o[s].v/total*100).toFixed(1)}%</td></tr>`).join('')}</tbody></table>`;
+  const stTable = (o, ttl) => `<table class="mini"><thead><tr><th>${ttl}</th><th class="n">Item</th><th class="n">${unitLbl}</th><th class="n">%</th></tr></thead><tbody>${STAT.map(s => `<tr><td><i class="dot" style="background:${STAT_COL[s]}"></i>${s}</td><td class="n">${num(o[s].n)}</td><td class="n">${qty?num(o[s].v):rpS(o[s].v)}</td><td class="n">${(o[s].v/total*100).toFixed(1)}%</td></tr>`).join('')}</tbody></table>`;
   // kategori top 10
   const cat = {}; rows.forEach(r => { const k = r.kategori || '(tanpa kategori)'; cat[k] = cat[k] || { tot:0, s:Object.fromEntries(STAT.map(x=>[x,0])) }; cat[k].tot += m(r); cat[k].s[r._ag] += m(r); });
   const topCat = Object.entries(cat).sort((a,b) => b[1].tot - a[1].tot).slice(0, 10);
@@ -1408,8 +1408,8 @@ function renderDash(){
   const top10 = rows.filter(r => r._ag === 'Slow Moving' || r._ag === 'Dead Stock').sort((a,b) => m(b) - m(a)).slice(0, 10);
   const ins = [
     `<b>${(old/ (rows.reduce((a,r)=>a+BK.reduce((x,b)=>x+(qty?(r[b[0]]||0):(r.nilai_satuan||0)*(r[b[0]]||0)),0),0)||1)*100).toFixed(0)}%</b> ${qty?'unit':'nilai'} persediaan berumur lebih dari 120 hari (${fv(old)}).`,
-    `Status aging Slow Moving + Dead Stock: <b>${fv(sd)}</b> (${(sd/total*100).toFixed(0)}% dari total), <b>${num(A['Slow Moving'].n + A['Dead Stock'].n)}</b> SKU.`,
-    hasSales ? `<b>${num(never.length)}</b> SKU (${fv(neverV)}, ${(neverV/total*100).toFixed(0)}%) <b>belum pernah terjual</b> pada data penjualan s/d ${fmtD(salesMeta.date_max)}.` : `Data penjualan belum diunggah, sehingga status penjualan belum bermakna (tab Unggah Penjualan).`,
+    `Status aging Slow Moving + Dead Stock: <b>${fv(sd)}</b> (${(sd/total*100).toFixed(0)}% dari total), <b>${num(A['Slow Moving'].n + A['Dead Stock'].n)}</b> Item.`,
+    hasSales ? `<b>${num(never.length)}</b> Item (${fv(neverV)}, ${(neverV/total*100).toFixed(0)}%) <b>belum pernah terjual</b> pada data penjualan s/d ${fmtD(salesMeta.date_max)}.` : `Data penjualan belum diunggah, sehingga status penjualan belum bermakna (tab Unggah Penjualan).`,
     topCat[0] ? `Kategori terbesar: <b>${escH(topCat[0][0])}</b> (${fv(topCat[0][1].tot)}, ${(topCat[0][1].tot/total*100).toFixed(0)}%).` : ''].filter(Boolean);
   $$('#dash').innerHTML = `<div class="dtitle"><h2 style="margin:0">Dashboard Persediaan Sparepart</h2><div class="meta">${sub}${qty?' &middot; <b>tanpa nilai Rupiah (berbasis unit)</b>':''}</div></div>
   <div class="cards">${kpi(qty?'Total unit di stok':'Nilai persediaan', fv(qty?units:total), qty?'':'acuan: Nilai Total file Aging')}${kpi('Part yang memiliki stok (item)', num(rows.length), qty?'':num(units)+' unit')}${kpi((qty?'Unit':'Nilai')+' umur &gt; 120 hari', fv(old), (old/(buck.reduce((a,b)=>a+b,0)||1)*100).toFixed(1)+'% dari ber-umur', 'txbad')}${kpi('Slow + Dead Stock (aging)', fv(sd), (sd/total*100).toFixed(1)+'% dari total', 'wr')}</div>
@@ -1422,7 +1422,7 @@ function renderDash(){
     ${gset.length > 1 ? `<div class="card" style="grid-column:1/-1"><b>${qty?'Unit':'Nilai'} per gudang menurut status aging</b><div class="chbox" style="height:230px"><canvas id="c5"></canvas></div></div>` : ''}
   </div>
   <div class="dgrid">
-    <div class="card"><b>Matriks status: Aging (baris) &times; Penjualan (kolom)</b><div class="meta" style="margin:2px 0 6px">Jumlah SKU dan ${qty?'unit':'nilai'}. Sel merah di kanan bawah (Slow menurut aging <i>dan</i> penjualan) adalah kandidat utama untuk ditinjau.</div>
+    <div class="card"><b>Matriks status: Aging (baris) &times; Penjualan (kolom)</b><div class="meta" style="margin:2px 0 6px">Jumlah Item dan ${qty?'unit':'nilai'}. Sel merah di kanan bawah (Slow menurut aging <i>dan</i> penjualan) adalah kandidat utama untuk ditinjau.</div>
       <table class="mini"><thead><tr><th></th>${STAT.map(s=>`<th class="n">${s}</th>`).join('')}</tr></thead><tbody>${STAT.map(a => `<tr><td><i class="dot" style="background:${STAT_COL[a]}"></i>${a}</td>${STAT.map(s => `<td class="n ${(a==='Slow Moving'||a==='Dead Stock')&&(s==='Slow Moving'||s==='Dead Stock')?'hot':''}">${num(mx[a][s].n)}<small class="meta" style="display:block">${qty?num(mx[a][s].v):rpS(mx[a][s].v)}</small></td>`).join('')}</tr>`).join('')}</tbody></table></div>
     <div class="card"><b>10 part Slow / Dead Stock (aging) ${qty?'dengan unit':'dengan nilai'} terbesar</b>
       <table class="mini"><thead><tr><th>Kode</th><th>Nama</th><th class="n">${qty?'Stok':'Nilai'}</th><th>Penjualan</th></tr></thead><tbody>${top10.map(r => `<tr><td><b>${escH(r.kode)}</b></td><td>${escH(r.nama)}</td><td class="n">${qty?num(r.stok):rpS(r.nilai_total)}</td><td>${stBadge(r._sl)}</td></tr>`).join('') || '<tr><td colspan="4" class="meta">Tidak ada.</td></tr>'}</tbody></table></div>
